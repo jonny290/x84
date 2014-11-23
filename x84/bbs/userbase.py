@@ -184,8 +184,7 @@ class User(object):
                 and self.password == digestpw(try_pass.upper(), salt))
 
     def __setitem__(self, key, value):
-        # pylint: disable=C0111,
-        #        Missing docstring
+        """ u.__setitem__(i, y) <==> u[i]=y """
         log = logging.getLogger(__name__)
         adb = DBProxy(USERDB, 'attrs')
 
@@ -201,11 +200,9 @@ class User(object):
                 attrs.__setitem__(key, value)
                 adb[self.handle] = attrs
         log.debug("set attr {!r} for user {!r}.".format(key, self.handle))
-    __setitem__.__doc__ = dict.__setitem__.__doc__
 
     def get(self, key, default=None):
-        # pylint: disable=C0111,
-        #        Missing docstring
+        """ u.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None. """
         from x84.bbs import ini
         log = logging.getLogger(__name__)
         adb = DBProxy(USERDB, 'attrs')
@@ -227,17 +224,13 @@ class User(object):
             log.debug('User({!r}.get(key={!r}) returns value.'
                       .format(self.handle, key))
         return attrs[key]
-    get.__doc__ = dict.get.__doc__
 
     def __getitem__(self, key):
-        # pylint: disable=C0111,
-        #        Missing docstring
+        """ u.__getitem__(y) <==> u[y] """
         return DBProxy(USERDB, 'attrs')[self.handle][key]
-    __getitem__.__doc__ = dict.__getitem__.__doc__
 
     def __delitem__(self, key):
-        # pylint: disable=C0111,
-        #        Missing docstring
+        """ u.__delitem__(y) <==> del u[y] """
         log = logging.getLogger(__name__)
         uadb = DBProxy(USERDB, 'attrs')
         with uadb:
@@ -249,7 +242,6 @@ class User(object):
                 uadb[self.handle] = attrs
                 log.info("User({!r}) delete attr {!r}."
                          .format(self.handle, key))
-    __delitem__.__doc__ = dict.__delitem__.__doc__
 
     @property
     def groups(self):
@@ -261,15 +253,11 @@ class User(object):
         return self._groups
 
     def group_add(self, group):
-        """
-        Add user to group.
-        """
+        """ Add user to group.  """
         return self._groups.add(group)
 
     def group_del(self, group):
-        """
-        Remove user from group.
-        """
+        """ Remove user from group.  """
         return self._groups.remove(group)
 
     def save(self):
@@ -297,9 +285,7 @@ class User(object):
         log.info("saved user '%s'.", self.handle)
 
     def delete(self):
-        """
-        Remove user record from database, and as a member of any groups.
-        """
+        """ Remove user record from database, and as a member of any groups.  """
         log = logging.getLogger(__name__)
         gdb = DBProxy(GROUPDB)
         with gdb:
@@ -339,7 +325,7 @@ class User(object):
 
     @property
     def calls(self):
-        """Legacy, number of times user has 'called' this board."""
+        """ Number of times user has 'called' this board."""
         return self._calls
 
     @calls.setter
@@ -350,9 +336,7 @@ class User(object):
 
     @property
     def location(self):
-        """
-        Legacy, used as a geographical location, group names, etc.
-        """
+        """ Geographical or origin of user. """
         return self._location
 
     @location.setter
@@ -363,9 +347,7 @@ class User(object):
 
     @property
     def email(self):
-        """
-        E-mail address. May be used for password resets.
-        """
+        """ E-mail address. May be used for password resets.  """
         return self._email
 
     @email.setter
@@ -376,9 +358,7 @@ class User(object):
 
     @property
     def plan(self):
-        """
-        Unix .plan contents, the original blogosphere.
-        """
+        """ Unix .plan contents, the original blogosphere.  """
         return self._plan
 
     @plan.setter
@@ -510,7 +490,11 @@ def check_user_password(username, password):
 
 
 def parse_public_key(user_pubkey):
-    """ Return paramiko key class instance of a user's public key text. """
+    """
+    Return paramiko key class instance of a user's public key text.
+
+    @raises ValueError: user_pubkey is not well-formed.
+    """
     import paramiko
 
     if len(user_pubkey.split()) == 3:

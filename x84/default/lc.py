@@ -1,8 +1,9 @@
 """ Last Callers script for x/84, http://github.com/jquast/x84 """
 # std
-import os
-import time
 import collections
+import datetime
+import time
+import os
 
 # local
 from x84.bbs import getsession, getterminal, get_ini, echo
@@ -33,20 +34,29 @@ location_max_length = get_ini(section='nua',
                               getter='getint'
                               ) or 15
 
+#: maximum length of column for number of calls
 numcalls_max_length = len('# calls')
 
+#: last caller record structure
 call_record = collections.namedtuple(
     'lc', ['timeago', 'num_calls', 'location', 'handle'])
 
 
 def get_lastcallers(last):
-    timenow = time.time()
-    return sorted([call_record(timeago=timenow - time_called,
-                               num_calls=num_calls,
-                               location=location,
-                               handle=handle.decode('utf8'))
-                   for handle, (time_called, num_calls, location)
-                   in DBProxy('lastcalls').items()])[:last]
+    last_callers = list()
+    for handle, (last_called, num_calls, location) in (
+            DBProxy('lastcalls').items()):
+        try:
+            timeago = (datetime.datetime.now() - last_called).total_seconds()
+        except TypeError:
+            # XXX handle Legacy format: simple Epoch as float
+            timeago = time.time() - last_called
+        last_callers.append(call_record(timeago=timeago,
+                                        num_calls=num_calls,
+                                        location=location,
+                                        handle=handle.decode('utf8')))
+    last_callers.sort()
+    return last_callers[:last]
 
 
 def main(last=10):

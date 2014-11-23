@@ -97,7 +97,7 @@ password_max_length = get_ini(section='nua',
 #: random maximum time to artificially sleep for unknown user.
 unknown_sleep = 2.0
 
-#: maximum failed logins before disconect
+#: maximum failed logins before disconnect
 login_max_attempts = 5
 
 #: on-connect fontset for SyncTerm emulator

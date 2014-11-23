@@ -23,7 +23,7 @@ art_file = os.path.join(here, 'art', 'nua*.ans')
 #: preferred fontset for SyncTerm emulator
 syncterm_font = 'topaz'
 
-#: which script to execute after registration
+#: script executed after registration
 top_script = get_ini(section='matrix',
                      key='topscript'
                      ) or 'top'
@@ -83,7 +83,7 @@ password_min_length = get_ini(section='nua',
                               ) or 4
 
 #: primary color (highlight)
-color_primary = 'magenta'
+color_primary = 'black_on_magenta'
 
 #: secondary color (lowlight)
 color_secondary = 'red'
@@ -113,7 +113,7 @@ vfield = collections.namedtuple('input_validation', [
 
 
 #: positions next prompt 40 pixels minus center of screen
-def fixate_next(term, newlines=2):
+def fixate_next(term, newlines):
     return u''.join((
         u'\r\n\r\n' * newlines,
         term.move_x(max(0, (term.width // 2) - 40))))
@@ -121,7 +121,7 @@ def fixate_next(term, newlines=2):
 
 def prompt_input(term, key, **kwargs):
     """ Prompt for user input. """
-    sep_ok = getattr(term, color_primary)(u'::')
+    sep_ok = getattr(term, color_secondary)(u'::')
     colors = {'highlight': getattr(term, color_primary)}
     echo(u'{sep} {key:>18}: '.format(sep=sep_ok, key=key))
     entry = LineEditor(colors=colors, **kwargs).read()
@@ -194,15 +194,8 @@ def show_validation_error(errmsg):
         echo(u'\r\n')
 
 
-def show_description(description):
-    term = getterminal()
-    for txt in term.wrap(description, width=min(80, term.width)):
-        echo(fixate_next(term, newlines=0))
-        echo(getattr(term, color_secondary)(txt.rstrip()))
-        echo(u'\r\n')
-
-
 def do_nua(user):
+    from common import show_description
     session, term = getsession(), getterminal()
     session.activity = u'Applying for an account'
 
@@ -252,8 +245,8 @@ def do_nua(user):
         field = validation_fields[idx]
         echo(fixate_next(term, newlines=1))
         if field.description:
-            show_description(field.description)
-            echo(fixate_next(term, newlines=0))
+            show_description(field.description, color=color_secondary)
+            echo(fixate_next(term, newlines=1))
         value = prompt_input(term=term,
                              key=field.prompt_key,
                              content=field.getter(),
@@ -282,7 +275,74 @@ def do_nua(user):
             setattr(user, field.name, value)
         idx += 1
 
+    from x84.bbs.ini import CFG
+    if CFG.has_section('ssh'):
+        pubkey_val = get_publickey(term=term)
+        if pubkey_val:
+            user['pubkey'] = pubkey_val
     return user
+
+
+def get_publickey(term):
+    """ Prompt user for an ssh public key. """
+    from x84.bbs.editor import ScrollingEditor
+    from x84.bbs.userbase import parse_public_key
+    from common import show_description
+
+    # explain an ssh key for the newbies, and prompt wether they would
+    # like to provide one or not.
+    echo(fixate_next(term, newlines=1))
+    show_description('An ssh public key allows you to login securely '
+                     'and with convenience, bypassing the login matrix.  '
+                     'Generate one using ssh-keygen(1), and provide '
+                     'your public key.  This may be the contents of '
+                     '~/.ssh/id_rsa.pub, for example.  Press escape to '
+                     'cancel.', color=color_secondary)
+    if not prompt_yesno(question='SSH Public key'):
+        return None
+
+    # when providing an ssh key, we use the ScrollingEditor class, but
+    # it has the problem that its (y,x) position must be absolute: so
+    # we first cause (maybe) scroll at bottom of screen to leave room
+    # for the editor window,
+    echo(term.move(term.height, 0))
+
+    while True:
+        # display our prompt prefix, input_prefix:
+        echo(fixate_next(term, newlines=1))
+        input_prefix = u'{sep} {key:>18}: '.format(
+            sep=getattr(term, color_secondary)(u'::'),
+            key='ssh public key')
+        echo(input_prefix)
+
+        # cause scroll to make prompt at position (term.height - 3).
+        echo(fixate_next(term, newlines=1))
+
+        # and prompt an editor on that row
+        xloc = max(0, (term.width // 2) - 40) + term.length(input_prefix)
+        editor = ScrollingEditor(xloc=xloc,
+                                 yloc=term.height - 4,
+                                 width=(term.width - xloc - 2),
+                                 colors = {
+                                     'highlight': getattr(term, color_primary)
+                                 })
+
+        value = editor.read()
+        echo(term.normal)
+        if value is None:
+            return
+
+        # validate key
+        try:
+            parse_public_key(value.strip())
+        except Exception as err:
+            show_validation_error('ValueError: {0}\r\n'.format(err))
+            continue
+        else:
+            echo(fixate_next(term, newlines=1))
+            echo(getattr(term, color_secondary)(u'**'))
+            echo(u' ssh-key public key accepted.')
+            return value.strip()
 
 
 def validate_handle(user, handle):

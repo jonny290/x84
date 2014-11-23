@@ -164,7 +164,7 @@ class LineEditor(object):
         elif type(keystroke) is int:
             return u''
         elif (ord(keystroke) >= ord(' ') and
-                (term.length(self.content) < self.width or self.width is None)):
+              (term.length(self.content) < self.width or self.width is None)):
             self.content += keystroke
             return keystroke if not self.hidden else self.hidden
         return u''
@@ -458,8 +458,8 @@ class ScrollingEditor(AnsiWindow):
         if self._horiz_shift > 0:
             self._horiz_shift += len(self.glyphs['strip'])
             prnt = u''.join((
-                    self.glyphs['strip'],
-                    self.content[self._horiz_shift:],))
+                self.glyphs['strip'],
+                self.content[self._horiz_shift:],))
         else:
             prnt = self.content
         return u''.join((
@@ -467,7 +467,9 @@ class ScrollingEditor(AnsiWindow):
             term.normal,
             self.colors.get('highlight', u''),
             self.align(prnt),
-            self.fixate(),))
+            self.fixate(),
+            term.normal,
+        ))
 
     def backword(self):
         """
@@ -503,9 +505,12 @@ class ScrollingEditor(AnsiWindow):
         else:
             rstr += u''.join((
                 self.fixate(0),
+                term.normal,
+                self.colors['highlight'],
                 u'\b' * len_toss,
                 u' ' * len_move,
-                u'\b' * len_move,))
+                u'\b' * len_move,
+                term.normal))
             self._horiz_pos -= 1
         return rstr
 
@@ -541,4 +546,7 @@ class ScrollingEditor(AnsiWindow):
         if self._horiz_pos >= (self.visible_width - self.margin_amt):
             # scrolling is required,
             return self.refresh()
-        return term.normal + self.colors['highlight'] + u_chr
+        # We have an excessive number of resets here because I've found on some
+        # terminals (iTerm2), the active background color is used to redraw the
+        # background on resize events, which can get pretty dirty.
+        return term.normal + self.colors['highlight'] + u_chr + term.normal

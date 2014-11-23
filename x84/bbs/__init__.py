@@ -174,7 +174,7 @@ def showart(filepattern, encoding=None, auto_mode=True, center=False,
     from sauce import SAUCE
     from x84.bbs.ini import CFG
 
-    session, term = getsession(), getterminal()
+    term = getterminal()
 
     # Open the piece
     try:

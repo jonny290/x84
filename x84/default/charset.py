@@ -29,12 +29,11 @@ syncterm_font = 'cp437'
 prompt_text = (u"Chose an encoding and set font until artwork "
                u"looks best.  "
 
-               u"SyncTerm, netrunner, and other DOS-emulating clients "
-               u"should chose cp437, though internationalized languages "
-               u"will appear as '?'.  "
+               u"SyncTerm, NetRunner, and other DOS-emulating clients "
+               u"should chose cp437 (US-English only).  "
 
                u"OSX Clients should chose an Andale Mono font. Linux "
-               u"fonts should chose an <...> font. ")
+               u"fonts should chose an Deja-Vu Sans Serif(??) font. ")
 
 prompt_padding = 10
 

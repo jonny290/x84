@@ -6,6 +6,7 @@ and assigned to the session.
 """
 # std
 import functools
+import datetime
 import logging
 import time
 import glob
@@ -181,7 +182,7 @@ def login(session, user):
 
     # update call records
     user.calls += 1
-    user.lastcall = time.time()
+    user.lastcall = datetime.datetime.now()
 
     # save user record
     if user.handle != u'anonymous':
@@ -193,14 +194,14 @@ def login(session, user):
         previous_call, _, _ = lc_db.get(user.handle, (0, 0, 0,))
         lc_db[user.handle] = (user.lastcall, user.calls, user.location)
 
-    return previous_call
+    return previous_call or None
 
 
 def do_intro_art(term, session):
     """
     Display random art file, prompt for quick login.
 
-    Bonus: allow chosing other artfiles with '<' and '>'.
+    Bonus: allows browsing artfiles with '<' (prev) and '>' (next).
     """
     editor_colors = {'highlight': term.black_on_red}
 
@@ -239,6 +240,38 @@ def do_intro_art(term, session):
             dirty = False
 
 
+def describe_ssh_availability(term, session):
+    from x84.bbs.ini import CFG
+    from x84.bbs import get_ini
+    if session.kind == 'ssh':
+        # what a good citizen!
+        return
+
+    elif not CFG.has_section('ssh'):
+        # ssh not enabled
+        return
+
+    ssh_port = get_ini(section='ssh', key='port')
+    description = (
+        "    {term.red}You are using {session.kind}, but ssh is available "
+        "on port {ssh_port} of this server.  If you want a secure connection "
+        "with shorter latency, we recommend instead to use ssh!  You may "
+        "even use an ssh key, which you can configure from your user "
+        "profile.  Remember: {big_msg}!"
+        .format(term=term,
+                session=session,
+                ssh_port=ssh_port,
+                big_msg=term.bold_blue("Big Brother is Watching You"))
+    )
+
+    for txt in term.wrap(description, width=min(80, term.width)):
+        echo(term.move_x(max(0, (term.width // 2) - 40)))
+        echo(term.red(txt.rstrip() + '\r\n'))
+    echo(u'\r\n\r\n')
+    echo(term.center(term.bold_black('Press any key to continue: ')).rstrip())
+    term.inkey()
+
+
 def main(handle=None):
     """ Main procedure. """
     # pylint: disable=R0914,R0912,R0915
@@ -255,40 +288,27 @@ def main(handle=None):
     user = get_user_record(handle)
 
     # register call
-    login(session, user)
+    last_called = login(session, user)
 
     # display art and prompt for quick login
     quick = do_intro_art(term, session)
 
-    echo(term.move_down() * 3)
+    echo(term.move_down() * 4)
 
     # only display news if the account has not
     # yet read the news since last update.
     gosub('news', quick=True)
 
     if not quick:
+        describe_ssh_availability(term, session)
+
         # display last 10 callers, if any
         gosub('lc')
 
         # one-liners
         gosub('ol')
 
+        # check new messages
+        gosub('msgarea', last_called=last_called)
+
     goto('main')
-
-    # WIP
-
-    # 6. check for new public/private msgs,
-    #gosub('readmsgs', set())
-    #session.activity = 'top'
-
-    # 8. one-liners
-    #gosub('ol')
-    #session.activity = 'top'
-
-    # 9. weather
-    #if session.user.get('location', None):
-    #    gosub('weather')
-    #session.activity = 'top'
-
-    # 10. automsg
-    #gosub('automsg')

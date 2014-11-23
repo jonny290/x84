@@ -1,6 +1,5 @@
 """ common interface module for x/84, https://github.com/jquast/x84 """
 from __future__ import division
-import math
 
 from x84.bbs import echo, showart
 from x84.bbs import getterminal, LineEditor
@@ -45,9 +44,15 @@ def prompt_pager(content, line_no=0, colors=None, width=None, breaker=u'- '):
 
     :param content: iterable of text contents.
     :param line_no: line number to offset beginning of pager.
+    :type line_no: int
     :param colors: optional dictionary containing terminal styling
                    attributes, for keys 'highlight' and 'lowlight'.
                    When unset, yellow and green are used.
+    :type color: dict
+    :param width: width of text to wrap content in screen.
+    :type width: int
+    :param breaker: text pattern to display above prompt.
+    :type breaker: str
     """
     term = getterminal()
     colors = colors or {
@@ -110,13 +115,21 @@ def prompt_pager(content, line_no=0, colors=None, width=None, breaker=u'- '):
         echo(term.move_x((term.width // 2) - 40))
     echo(u'Press {enter}.'.format(
         enter=colors['highlight'](u'return')))
-    inp = LineEditor(0, colors=colors).read()
+    LineEditor(0, colors=colors).read()
 
 
-def prompt_input(term, key, content=u'',
-                 sep_ok=u'::', sep_bad=u'::',
-                 width=None, colors=None):
-    """ Prompt for and return input, up to given width and colorscheme.
+def prompt_input(term, key, content=u'', sep=u'::', width=None, colors=None):
+    """
+    Prompt for and return input, up to given width and colorscheme.
+
+    @param term: Terminal class instance.
+    @param key: prompting key message.
+    @param content: optional content of input (for re-use).
+    @param sep: separator displayed before key content.
+    @param width: width of input bar.
+    @param colors: colors scheme of input bar.
+    @returns: text of input given.
+    @rtype: str
     """
     from x84.bbs import getterminal
     term = getterminal()
@@ -126,11 +139,17 @@ def prompt_input(term, key, content=u'',
     sep_ok = colors['highlight'](sep_ok)
 
     echo(u'{sep} {key:<8}: '.format(sep=sep_ok, key=key))
-    return LineEditor(colors=colors, width=width).read() or u''
+    return LineEditor(colors=colors,
+                      width=width,
+                      content=content).read() or u''
+
 
 def coerce_terminal_encoding(term, encoding):
-    # attempt to coerce encoding of terminal to match session.
-    # NOTE: duplicated in top.py
+    """
+    Coerce user's terminal encoding to match session.
+
+    This is done by sending terminal sequences.
+    """
     echo(u'\r\n')
     echo({
         # ESC %G activates UTF-8 with an unspecified implementation
@@ -142,5 +161,17 @@ def coerce_terminal_encoding(term, encoding):
         # Linux vga console.
         'cp437': u'\x1b%@\x1b(U',
     }.get(encoding, u''))
-    # remove possible artifacts, at least, %G may print a raw G
+
+    # remove possible artifacts, at least, %G may print a raw 'G'
     echo(term.move_x(0) + term.clear_eol)
+
+
+def show_description(description, color='white', width=80):
+    term = getterminal()
+    wide = min(width, term.width)
+    line_no = 0
+    for line_no, txt in enumerate(term.wrap(description, width=wide)):
+        echo(term.move_x(max(0, (term.width // 2) - (width // 2))))
+        echo(getattr(term, color)(txt.rstrip()))
+        echo(u'\r\n')
+    return line_no
