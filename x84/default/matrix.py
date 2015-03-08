@@ -104,7 +104,7 @@ syncterm_font = get_ini(
 
 #: on-connect banner
 headers = glob.glob(os.path.join(here,"art","YOSBBS*.ANS"))
-bannername = "YOSBBS"+str(random.randrange(1,len(headers))).zfill(2)+".ANS"
+bannername = "YOSBBS"+str(random.randrange(1,20)).zfill(2)+".ANS"
 art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
 #art_file = get_ini(
 #
