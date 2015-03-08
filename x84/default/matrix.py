@@ -103,7 +103,7 @@ syncterm_font = get_ini(
 ) or 'topaz'
 
 #: on-connect banner
-headers = glob.glob(os.path.join(os.path.dirname(__file__),"art","YOSBBS*.ANS"))
+headers = glob.glob(os.path.join(here,"art","YOSBBS*.ANS"))
 bannername = "YOSBBS"+str(random.randrange(1,len(headers))).zfill(2)+".ANS"
 art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
 #art_file = get_ini(
