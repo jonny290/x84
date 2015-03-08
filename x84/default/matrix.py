@@ -19,6 +19,7 @@ import logging
 import random
 import time
 import os
+import glob
 
 from x84.bbs import getterminal, get_ini, goto, gosub
 from x84.bbs import echo, showart, syncterm_setfont, LineEditor
