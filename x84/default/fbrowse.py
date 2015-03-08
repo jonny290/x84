@@ -184,7 +184,7 @@ def edit_description(filepath, db_desc):
         db_desc[filepath] = new_desc.splitlines()
 
 
-def download_files(term, session, protocol='xmodem1k'):
+def download_files(term, session, protocol='xmodem'):
     """ Download flagged files. """
     if not len(browser.flagged_files):
         return False
@@ -208,7 +208,7 @@ def download_files(term, session, protocol='xmodem1k'):
     term.inkey()
 
 
-def upload_files(term, protocol='xmodem1k'):
+def upload_files(term, protocol='xmodem'):
     """ Upload files. """
     echo(term.clear)
     while True:
