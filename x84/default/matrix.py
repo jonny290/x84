@@ -102,9 +102,13 @@ syncterm_font = get_ini(
 ) or 'topaz'
 
 #: on-connect banner
-art_file = get_ini(
-    section='matrix', key='art_file'
-) or os.path.join(here, 'art', 'matrix.ans')
+headers = glob.glob(os.path.join(os.path.dirname(__file__),"art","YOSBBS*.ANS"))
+bannername = "YOSBBS"+str(random.randrange(1,len(headers))).zfill(2)+".ANS"
+art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
+#art_file = get_ini(
+#
+#    section='matrix', key='art_file'
+#) or os.path.join(here, 'art', 'matrix.ans')
 
 #: encoding on banner
 art_encoding = get_ini(
