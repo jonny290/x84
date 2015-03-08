@@ -96,7 +96,7 @@ setup(name='x84',
       package_data={
           '': [README],
           'x84.default': ['*.ans', '*.txt', ],
-          'x84.default.art': ['*.asc', '*.ans', '*.txt',
+          'x84.default.art': ['*.asc', '*.ans', '*.txt', '*.ANS',
                               'top/*',
                               'weather/*',
                               'bulletins/*/*',
