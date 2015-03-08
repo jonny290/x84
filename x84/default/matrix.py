@@ -272,6 +272,7 @@ def main(anonymous=False, new=False):
     the user should now be authenticated, such as occurs for example
     on telnet.
     """
+    import random, time, glob
     term = getterminal()
 
     display_banner(term)
