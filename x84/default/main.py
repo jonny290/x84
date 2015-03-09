@@ -22,6 +22,7 @@ from common import (
     display_banner,
     display_prompt,
 )
+here = os.path.dirname(__file__)
 
 #: MenuItem is a definition class for display, input, and target script.
 MenuItem = collections.namedtuple(
