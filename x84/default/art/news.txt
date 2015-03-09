@@ -1,44 +1,66 @@
-|04/==================================
+|04/|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01
 |04\|02YOSBBS TODO|01
 
-= main menu
-    - oneliners
-        - display (ms1)
-        - enter (ms2)
+|03=|01 main menu
+    |02-|11 oneliners
+        |02-|11 display (ms1)
+        |02-|11 enter (ms2)
         
-    - multimode
-        : if cmd char (/) toggle menu mode
-        : if non cmd enter chat line
+    |02-|11 multimode
+        |04:|11 if cmd char (/) toggle menu mode
+        |04:|11 if non cmd enter chat line
  
-    - async/polling
-        : getch with timeout (ms1)
-        : async getch with loop (ms2)
+    |02-|11 async/polling
+        |04:|11 getch with timeout (ms1)
+        |04:|11 async getch with loop (ms2)
 
-= logon stuff
-    - random yosbanner [DONE]
-    - SSH force (?)
+|03=|01 logon stuff
+    |02-|11 random yosbanner [DONE]
+    |02-|11 SSH force (?)
 
-= yospos
-    - add cookie keys to menus (ms1)
-        : nua
-        : uedit
+|03=|01 yospos
+    |02-|11 add cookie keys to menus (ms1)
+        |04:|11 nua
+        |04:|11 uedit
 
-    - add yosbrowser (ms2)
-        : fix display
-        : fix quoting
+    |02-|11 add yosbrowser (ms2)
+        |04:|11 fix display
+        |04:|11 fix quoting
 
-= art gallery
+|03=|01 dot 2.0
+    |02-|11 web integration (ms1)
+        |04:|11 index console
+            |05;|11 ansi art?
+            |05;|11 stats
+            |05;|11 post oneliner
+        |04:|11 feeds
+        |04:|11 scores (ansi render?)
+    |02-|11 twitter (ms2)
+        |04:|11 tweet to oneliners
+        |04:|11 tweet LoRD kills
+        |04:|11 daily stats 
+    |02-|11 
 
-= textfiles
-    - mod filebrowser ?
-    - import files
-        : old school (ms1)
-        : find new stuff ? (ms2)
+|03=|01 art gallery
 
-= filearea
-    - get online [DONE]
-    - zmodem or other protocol? (ms1)
-    - batching
+|03=|01 textfiles
+    |02-|11 mod filebrowser ?
+    |02-|11 import files
+        |04:|11 old school (ms1)
+        |04:|11 find new stuff ? (ms2)
+
+|03=|01 filearea
+    |02-|11 get online [DONE]
+    |02-|11 zmodem or other protocol? (ms1)
+    |02-|11 batching
+
+|03=|01 games
+    |02-|11 LoRD (ms1)
+    |02-|11 tw2002 (ms2) BIG
+    |02-|11 others (ms2?)
+
+
+
 
 
 
