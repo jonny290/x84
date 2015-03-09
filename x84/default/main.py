@@ -206,6 +206,7 @@ def get_line_editor(term, menu):
 
 def main():
     """ Main menu entry point. """
+    import os, glob, random
     session, term = getsession(), getterminal()
 
     text, width, height, dirty = u'', -1, -1, 2
