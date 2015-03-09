@@ -34,22 +34,27 @@ colored_menu_items = get_ini(
 #: color used for menu key entries
 color_highlight = get_ini(
     section='main', key='color_highlight'
-) or 'bold_magenta'
+) or 'bold_green'
 
 #: color used for prompt
 color_backlight = get_ini(
     section='main', key='color_backlight',
-) or 'magenta_reverse'
+) or 'green_reverse'
 
 #: color used for brackets ``[`` and ``]``
 color_lowlight = get_ini(
     section='main', key='color_lowlight'
-) or 'bold_black'
+) or 'bold_white'
 
 #: filepath to artfile displayed for this script
-art_file = get_ini(
-    section='main', key='art_file'
-) or 'art/main1.asc'
+#art_file = get_ini(
+#    section='main', key='art_file'
+#) or 'art/main1.asc'
+
+headers = glob.glob(os.path.join(here,"art","YOSBBS*.ANS"))
+bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
+art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
+
 
 #: encoding used to display artfile
 art_encoding = get_ini(
@@ -219,7 +224,7 @@ def main():
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
             session.activity = 'main menu'
-            top_margin = display_banner(art_file, encoding=art_encoding) + 1
+            top_margin = term.height - display_banner(art_file, encoding=art_encoding) - 7
             echo(u'\r\n')
             if width != term.width or height != term.height:
                 width, height = term.width, term.height
