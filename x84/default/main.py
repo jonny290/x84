@@ -219,7 +219,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
 
 def fillwindow(window, fillchar='#',bordered=False):
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
-    fillstarty, fillstartx = 0
+    fillstarty, fillstartx = 0, 0
     fillwidth, fillheight = window.width, window.height
     if bordered:
         fillstarty += 1
@@ -228,7 +228,8 @@ def fillwindow(window, fillchar='#',bordered=False):
         fillheight -= 2
     for i in range (0, fillheight):
         fillstr = fillchar * fillwidth
-        echo(window.pos(i, 0) + fillstr)
+        echo(term.bold_black()+window.pos(i, 0) + fillstr)
+    echo(term.normal())
     return True
 
 def main():
