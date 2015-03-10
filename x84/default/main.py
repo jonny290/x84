@@ -231,6 +231,7 @@ def fillwindow(window, fillchar='#',bordered=False):
 def main():
     """ Main menu entry point. """
     import os, glob, random
+    from x84.bbs import showart
     session, term = getsession(), getterminal()
 
     text, width, height, dirty = u'', -1, -1, 2
