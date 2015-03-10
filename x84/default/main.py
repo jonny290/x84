@@ -263,7 +263,9 @@ def main():
             session.activity = 'main menu'
 	    bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
 	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
-            top_margin = term.height - display_banner(art_file, encoding=art_encoding) - 7
+	    for line in showart(art_file, encoding=art_encoding):
+                echo(line(
+#            top_margin = term.height - display_banner(art_file, encoding=art_encoding) - 7
             echo(u'\r\n')
             if width != term.width or height != term.height:
                 width, height = term.width, term.height
