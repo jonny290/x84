@@ -1,64 +1,77 @@
-|04/|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01|03=|01
-|04\|02YOSBBS TODO|01
+|04\|06YOSBBS TODO|01
 
 |03=|01 main menu
-    |02-|11 oneliners
-        |02-|11 display (ms1)
-        |02-|11 enter (ms2)
+    |06-|12 tweak code
+        |04:|12 windowfy bg
+        |04:|12 windowfy top art/menu
+        |04:|12 windowfy twitter/oneliners
+        |04:|12 'big' if >= 132col
+        |04:|12 'tall' if >= 43row
+        |04:|12 extra (read only) main window if tall
+        |04:|12 widget row to right if wide
+
+    |06-|12 oneliners
+        |06-|12 display (ms1)
+        |06-|12 enter (ms2)
         
-    |02-|11 multimode
-        |04:|11 if cmd char (/) toggle menu mode
-        |04:|11 if non cmd enter chat line
+    |06-|12 multimode
+        |04:|12 if cmd char (/) toggle menu mode
+        |04:|12 if non cmd enter chat line
  
-    |02-|11 async/polling
-        |04:|11 getch with timeout (ms1)
-        |04:|11 async getch with loop (ms2)
+    |06-|12 async/polling
+        |04:|12 getch with timeout (ms1)
+        |04:|12 async getch with loop (ms2)
 
 |03=|01 logon stuff
-    |02-|11 random yosbanner [DONE]
-    |02-|11 SSH force (?)
+    |06-|12 random yosbanner [DONE]
+    |06-|12 SSH force (?)
 
 |03=|01 yospos
-    |02-|11 add cookie keys to menus (ms1)
-        |04:|11 nua
-        |04:|11 uedit
+    |06-|12 add cookie keys to menus (ms1)
+        |04:|12 nua
+        |04:|12 uedit
 
-    |02-|11 add yosbrowser (ms2)
-        |04:|11 fix display
-        |04:|11 fix quoting
+    |06-|12 add yosbrowser (ms2)
+        |04:|12 fix display
+        |04:|12 fix quoting
 
 |03=|01 dot 2.0
-    |02-|11 web integration (ms1)
-        |04:|11 index console
-            |05;|11 ansi art?
-            |05;|11 stats
-            |05;|11 post oneliner
-        |04:|11 feeds
-        |04:|11 scores (ansi render?)
-    |02-|11 twitter (ms2)
-        |04:|11 tweet to oneliners
-        |04:|11 tweet LoRD kills
-        |04:|11 daily stats 
-    |02-|11 
+    |06-|12 web integration (ms1)
+        |04:|12 index console
+            |05;|12 ansi art?
+            |05;|12 stats
+            |05;|12 post oneliner
+        |04:|12 feeds
+        |04:|12 scores (ansi render?)
+    |06-|12 twitter (ms2)
+        |04:|12 tweet to oneliners
+        |04:|12 tweet LoRD kills
+        |04:|12 daily stats 
+    |06-|12 
 
 |03=|01 art gallery
 
 |03=|01 textfiles
-    |02-|11 mod filebrowser ?
-    |02-|11 import files
-        |04:|11 old school (ms1)
-        |04:|11 find new stuff ? (ms2)
+    |06-|12 mod filebrowser ?
+    |06-|12 import files
+        |04:|12 old school (ms1)
+        |04:|12 find new stuff ? (ms2)
 
 |03=|01 filearea
-    |02-|11 get online [DONE]
-    |02-|11 zmodem or other protocol? (ms1)
-    |02-|11 batching
+    |06-|12 get online [DONE]
+    |06-|12 zmodem or other protocol? (ms1)
+    |06-|12 batching
 
 |03=|01 games
-    |02-|11 LoRD (ms1)
-    |02-|11 tw2002 (ms2) BIG
-    |02-|11 others (ms2?)
+    |06-|12 LoRD (ms1)
+    |06-|12 tw2006 (ms2) BIG
+    |06-|12 others (ms2?)
 
+|03=|01 R&D
+    |06-|12 find an ansi graphing engine (or write one)
+    |06-|12 [CLASSIFIED]
+    |06-|12 [REDACTED]
+    |06-|12 [FOR FUTURE USE ONLY]
 
 
 
