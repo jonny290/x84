@@ -64,7 +64,7 @@ art_encoding = get_ini(
 #: fontset for SyncTerm emulator
 syncterm_font = get_ini(
     section='main', key='syncterm_font'
-) or 'topaz'
+) or 'cp437'
 
 
 def get_sesame_menu_items(session):
@@ -268,7 +268,8 @@ def main():
             ypos = 1
             echo(term.move(1,1))
             session.activity = 'main menu'
-	    bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
+            bannername = "yos.asc"
+	    #bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
 	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
             for line in showart(art_file, encoding=art_encoding):
                 echo(line)
