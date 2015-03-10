@@ -209,7 +209,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     # with a background layer, modular construction and incremental update ability.
     # In theory we should have separate content-generating and screen-rendering subs
     # to provide for fast refreshes without stutters, but that will have to come later.
-    from x84.bbs import Ansi, AnsiWindow, getsession, getterminal, echo, showcp437, ini
+    from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
     session, terminal = getsession(), getterminal()
     #lets start with the bg frame
     background = AnsiWindow.new(term.height, term.width, 0, 0)
@@ -217,7 +217,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     return True
 
 def fillwindow(window, fillchar='#',bordered=False):
-    from x84.bbs import Ansi, AnsiWindow, getsession, getterminal, echo, showcp437, ini
+    from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
     fillstartx, fillstarty = window.xloc, window.yloc
     fillwidth, fillheight = window.width, window.height
     if bordered:
@@ -258,6 +258,7 @@ def main():
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
             renderscreen()
+            echo(term.move(1,1))
             session.activity = 'main menu'
 	    bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
 	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
