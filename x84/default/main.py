@@ -254,12 +254,12 @@ def main():
         colors['lowlight'] = getattr(term, color_lowlight)
 
     while True:
-        renderscreen()
         if dirty == 2:
             # set syncterm font, if any
             if syncterm_font and term.kind.startswith('ansi'):
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
+            renderscreen()
             ypos = 1
             echo(term.move(1,1))
             session.activity = 'main menu'
