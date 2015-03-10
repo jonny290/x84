@@ -203,6 +203,27 @@ def get_line_editor(term, menu):
     return LineEditor(width=max_inp_length,
                       colors={'highlight': getattr(term, color_backlight)})
 
+def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
+    """ Rendering routine for the current screen. """
+    # This is where we depart. We want a clean windowing scheme
+    # with a background layer, modular construction and incremental update ability.
+    # In theory we should have separate content-generating and screen-rendering subs
+    # to provide for fast refreshes without stutters, but that will have to come later.
+    from x84.bbs import Ansi, AnsiWindow, getsession, getterminal, echo, showcp437, ini
+    session, terminal = getsession(), getterminal()
+    #lets start with the bg frame
+    background = AnsiWindow.new(term.height, term.width, 0, 0)
+    echo(background.clear() + background.border())
+    return True
+
+def fillwindow(window, fillchar='#',bordered=False):
+    from x84.bbs import Ansi, AnsiWindow, getsession, getterminal, echo, showcp437, ini
+    fillstartx, fillstarty = window.xloc, window.yloc
+    fillwidth, fillheight = window.width, window.height
+    if bordered:
+        fillstartx, fillstarty += 1
+        fillwidth, fillheight -= 2
+    return True
 
 def main():
     """ Main menu entry point. """
@@ -214,6 +235,15 @@ def main():
     menu_items = get_menu_items(session)
     editor = get_line_editor(term, menu_items)
     colors = {}
+    menumode = False
+    tallmode = False
+    widemode = False
+
+    if term.width >= 132:
+        widemode = True
+    if term.height >= 43:
+        tallmode = True
+
     if colored_menu_items:
         colors['backlight'] = getattr(term, color_backlight)
         colors['highlight'] = getattr(term, color_highlight)
@@ -225,6 +255,7 @@ def main():
             if syncterm_font and term.kind.startswith('ansi'):
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
+            renderscreen()
             session.activity = 'main menu'
 	    bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
 	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
