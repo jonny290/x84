@@ -222,14 +222,14 @@ def fillwindow(window, fillchar='#',bordered=False):
     session, term = getsession(), getterminal()
     fillstarty, fillstartx = 0, 0
     fillwidth, fillheight = window.width, window.height
-    if bordered:
+    if bordered == True:
         fillstarty += 1
         fillstartx += 1
         fillwidth -= 2
         fillheight -= 2
-    for i in range (0, fillheight):
+    for i in range (fillstarty, fillheight):
         fillstr = fillchar * fillwidth
-        echo(term.bold_black+window.pos(i, 0) + fillstr)
+        echo(term.bold_black+window.pos(i, fillstartx) + fillstr)
     echo(term.normal)
     return True
 
