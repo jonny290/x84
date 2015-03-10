@@ -221,8 +221,10 @@ def fillwindow(window, fillchar='#',bordered=False):
     fillstartx, fillstarty = window.xloc, window.yloc
     fillwidth, fillheight = window.width, window.height
     if bordered:
-        fillstartx, fillstarty += 1
-        fillwidth, fillheight -= 2
+        fillstartx += 1
+        fillstarty += 1
+        fillwidth -= 2
+        fillheight -= 2
     return True
 
 def main():
