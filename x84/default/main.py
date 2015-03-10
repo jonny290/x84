@@ -212,7 +212,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
     session, term = getsession(), getterminal()
     #lets start with the bg frame
-    background = AnsiWindow(term.height - 2, term.width - 2, 0, 0)
+    background = AnsiWindow(term.height - 1, term.width, 0, 0)
     echo(background.clear() + background.border())
     fillwindow(background, '#', True)
     return True
@@ -264,10 +264,10 @@ def main():
             if syncterm_font and term.kind.startswith('ansi'):
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
+            session.activity = 'main menu'
             renderscreen()
             ypos = 1
             echo(term.move(1,1))
-            session.activity = 'main menu'
             bannername = "yos.asc"
 	    #bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
 	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
