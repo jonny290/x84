@@ -264,14 +264,15 @@ def main():
             session.activity = 'main menu'
 	    bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
 	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
-	    for line in showart(art_file, encoding=art_encoding):
+            menubanner = showart(art_file, encoding=art_encoding):
+            for line in menubanner:
                 echo(line)
 #            top_margin = term.height - display_banner(art_file, encoding=art_encoding) - 7
             echo(u'\r\n')
             if width != term.width or height != term.height:
                 width, height = term.width, term.height
                 text = render_menu_entries(
-                    term, top_margin, menu_items, colors, 4, 1)
+                    term, 2 + len(menubanner), menu_items, colors, 4, 1)
             echo(u''.join((text,
                            display_prompt(term, colors),
                            editor.refresh())))
