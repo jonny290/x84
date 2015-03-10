@@ -221,7 +221,7 @@ def fillwindow(window, fillchar='#',bordered=False):
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
     session, term = getsession(), getterminal()
     fillstarty, fillstartx = 0, 0
-    fillwidth, fillheight = window.width, window.height
+    fillwidth, fillheight = window.width, window.height + 1
     if bordered == True:
         fillstarty += 1
         fillstartx += 1
