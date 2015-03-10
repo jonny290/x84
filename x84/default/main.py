@@ -212,8 +212,9 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
     session, terminal = getsession(), getterminal()
     #lets start with the bg frame
-    background = AnsiWindow.new(term.height, term.width, 0, 0)
+    background = AnsiWindow(term.height, term.width, 0, 0)
     echo(background.clear() + background.border())
+    fillwindow(background, '*', True)
     return True
 
 def fillwindow(window, fillchar='#',bordered=False):
