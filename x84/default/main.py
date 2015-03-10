@@ -210,7 +210,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     # In theory we should have separate content-generating and screen-rendering subs
     # to provide for fast refreshes without stutters, but that will have to come later.
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
-    session, terminal = getsession(), getterminal()
+    session, term = getsession(), getterminal()
     #lets start with the bg frame
     background = AnsiWindow(term.height, term.width, 0, 0)
     echo(background.clear() + background.border())
