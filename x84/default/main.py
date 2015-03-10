@@ -229,7 +229,7 @@ def fillwindow(window, fillchar='#',bordered=False):
         fillheight -= 2
     for i in range (0, fillheight):
         fillstr = fillchar * fillwidth
-        echo(term.bold_black()+window.pos(i, 0) + fillstr)
+#        echo(term.bold_black()+window.pos(i, 0) + fillstr)
     echo(term.normal())
     return True
 
