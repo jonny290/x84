@@ -5,6 +5,7 @@ import collections
 import os
 import random, glob
 import math
+import time
 
 
 # local
@@ -71,6 +72,8 @@ menutoggle = True
 arttoggle = True
 bgtoggle = True
 
+walltime = time.time() - 30
+art.file = ''
 def get_sesame_menu_items(session):
     # there doesn't exist any documentation on how this works,
     # only the given examples in the generated default.ini file
@@ -236,7 +239,8 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     background.init_theme(colors, None, 'double')
     echo(term.clear())
-    art_file = headers[random.randrange(0,len(headers))]
+    if time.time() - walltime > 30:
+        art_file = headers[random.randrange(0,len(headers))]
     ypos = 1
     for line in showart(art_file, encoding=art_encoding):
 	if ypos >= term.height - 3:
