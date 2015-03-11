@@ -211,7 +211,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     # In theory we should have separate content-generating and screen-rendering subs
     # to provide for fast refreshes without stutters, but that will have to come later.
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
-    import os
+    import os, time
     session, term = getsession(), getterminal()
     colors = {}
     colors['border'] = term.green
@@ -235,7 +235,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     for line in showart(art_file, encoding=art_encoding):
 	echo(topart.pos(ypos, 2)+line)
 	ypos += 1
-    echo(topart.border() + topart.title('BULLETIN BOARD SYSTEM')) 
+    echo(topart.border() + topart.title(str(time.time()))) 
     rendermenuwin()
     return ypos
 
