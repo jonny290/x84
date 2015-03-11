@@ -225,7 +225,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     topartheight = 9
     topartwidth = 37
     topart = AnsiWindow(topartheight, topartwidth, toparty, topartx)
-    topart.init_theme(colors, None, 'double')
+    topart.init_theme(colors, None, 'block')
     echo (topart.clear())
     ypos = 1
     bannername = "yos.asc"
