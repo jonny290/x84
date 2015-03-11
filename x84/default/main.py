@@ -222,7 +222,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     colors = {}
     colors['border'] = term.green
     #lets start with the bg frame
-    headers = glob.glob(os.path.join(here,"top","*.*"))
+    headers = glob.glob(os.path.join(here,"art","top","*.*"))
     if menudraw and artdraw and bgdraw: 
 	    background = AnsiWindow(term.height - 1, term.width, 0, 0)
 	    background.init_theme(colors, None, 'double')
