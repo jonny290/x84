@@ -259,6 +259,7 @@ def rendermenuwin():
   	    key_text=key_text, menu_text=menu_item.text))
     max_cols = 3 
     max_rowsp=2
+    top_margin = 0
     menu_items = get_menu_items(session)
     colors = {}
     if colored_menu_items:
