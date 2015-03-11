@@ -302,7 +302,7 @@ def rendermenuwin():
     menuwin = AnsiWindow(8, 2+(n_columns * padding), 12, 8)
     echo(menuwin.clear())
 
-    fillwindow(menuwin,  chr(250).decode('cp437'), False)
+    fillwindow(menuwin,  chr(250).decode('cp437'), True)
 
     for idx, item in enumerate(rendered_menuitems):
         xloc = 1 +(padding * (column - 1))
