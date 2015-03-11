@@ -376,12 +376,12 @@ def main():
             # set syncterm font, if any
             if syncterm_font and term.kind.startswith('ansi'):
                 echo(syncterm_setfont(syncterm_font))
+                menutoggle, arttoggle, bgtoggle = True, True, True
         if dirty:
             session.activity = 'main menu'
 	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
             top_margin = renderscreen(menutoggle, arttoggle, bgtoggle)
-            menutoggle, arttoggle, bgtoggle = True, True, True
             echo(term.move(term.height, 2))
             echo(u''.join((text,
 	    display_prompt(term, colors),
@@ -403,8 +403,8 @@ def main():
             inp = term.inkey(0)
             while inp:
                 if inp.code == term.KEY_TAB:
-                    menutoggle = False
-                    dirty = 2
+                    menutoggle = not menutoggle
+                    dirty = True
                     break
                 if inp.code == term.KEY_ENTER:
                     # find matching menu item,
@@ -423,7 +423,7 @@ def main():
                                 (u' ' * len(editor.content)),
                                 (u'\b' * len(editor.content)),)))
                             editor.content = u''
-                            echo(editor.refresh())
+                            echo(editor.refresh()+term.normal)
                 elif inp.is_sequence:
                     echo(editor.process_keystroke(inp.code))
                 else:
