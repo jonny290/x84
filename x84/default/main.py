@@ -212,6 +212,8 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
     import os
     session, term = getsession(), getterminal()
+    colors = {}
+    colors['border'] = term.bold_red
     #lets start with the bg frame
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     echo(background.clear() + background.border())
@@ -222,7 +224,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     topartheight = 9
     topartwidth = 37
     topart = AnsiWindow(topartheight, topartwidth, toparty, topartx)
-    topart.init_theme(None, None, 'double')
+    topart.init_theme(colors, None, 'double')
     echo (topart.clear())
     ypos = 1
     bannername = "yos.asc"
