@@ -218,7 +218,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     #lets start with the bg frame
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     echo(term.clear() + background.border())
-    fillwindow(background, '#', True)
+    fillwindow(background,  chr(250).decode('cp437'), True)
     #now on to the top art
     toparty = 3
     topartx = 3
