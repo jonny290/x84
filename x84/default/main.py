@@ -298,21 +298,20 @@ def rendermenuwin():
     row_spacing = min(max(1, min(3, int(math.floor(height / rows)))), max_rowsp)
 
     column = 1
+    row = 1
     output = u''
 
 
 
     for idx, item in enumerate(rendered_menuitems):
-        padding_left = term.move_x(xpos) if column == 1 and xpos else u''
-        padding_right = ' ' * (padding - column_widths[idx])
-        if idx == len(rendered_menuitems) - 1:
+        xloc = padding * (column - 1)
+        padding_left = menuwin.pos(row - 1, xloc)
             # last item, two newlines
-            padding_right = u'\r\n' * 2
         elif column == n_columns:
+            row += 1
             # newline(s) on last column only
-            padding_right = u'\r\n' * (row_spacing + 1)
         column = 1 if column == n_columns else column + 1
-        output = u''.join((output, padding_left, item, padding_right))
+        echo(u''.join(padding_left, item))
     return 1
 
 
