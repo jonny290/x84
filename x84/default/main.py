@@ -281,10 +281,10 @@ def main():
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
             session.activity = 'main menu'
-            top_margin = renderscreen()
-            echo(term.move(1,1))
 	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
+            top_margin = renderscreen()
+            echo(term.pos(top_margin + 2, 2)
             text = render_menu_entries(
                    term, top_margin, menu_items, colors, 4, 1)
 	    echo(u''.join((text,
