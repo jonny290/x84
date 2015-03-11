@@ -30,6 +30,16 @@ GLYPHSETS = {
         'top-horiz': chr(205).decode('cp437'),
         'bot-horiz': chr(205).decode('cp437'),
     },
+    'block': {
+        'top-left': chr(220).decode('cp437'),
+        'bot-left': chr(223).decode('cp437'),
+        'top-right': chr(220).decode('cp437'),
+        'bot-right': chr(223).decode('cp437'),
+        'left-vert': chr(222).decode('cp437'),
+        'right-vert': chr(221).decode('cp437'),
+        'top-horiz': chr(220).decode('cp437'),
+        'bot-horiz': chr(223).decode('cp437'),
+    },
     'shadow': {
         'top-left': chr(218).decode('cp437'),
         'bot-left': chr(212).decode('cp437'),
