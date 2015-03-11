@@ -272,8 +272,6 @@ def rendermenuwin():
         measure_width = term.length
     else:
         measure_width = str.__len__
-    text = render_menu_entries(term, 0, menu_items, colors, 4, 1)
-    echo(menuwin.pos(0,0)+text)
 
     # render all menu items, highlighting their action 'key'
     rendered_menuitems = [decorate_menu_item(menu_item, colors)
