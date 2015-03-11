@@ -238,6 +238,7 @@ def rendermenuwin():
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
     import os
     session, term = getsession(), getterminal()
+    menu_items = get_menu_items(session)
     colors = {}
     if colored_menu_items:
        colors['backlight'] = getattr(term, color_backlight)
