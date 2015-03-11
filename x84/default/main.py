@@ -226,11 +226,12 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	    background = AnsiWindow(term.height - 1, term.width, 0, 0)
 	    background.init_theme(colors, None, 'double')
 	    echo(term.clear())
-	    art_file = os.path.join(os.path.dirname(__file__), 'art','ue.ans')
+	    art_file = os.path.join(os.path.dirname(__file__), 'art','face.ans')
 	    ypos = 1
 	    for line in showart(art_file, encoding=art_encoding):
 		echo(background.pos(ypos, 2)+line)
 		ypos += 1
+	    echo(background.border)
 #	    fillwindow(background,  chr(176).decode('cp437'), True)
   
     #now on to the top art
