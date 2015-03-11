@@ -253,6 +253,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 		echo(topart.pos(ypos, 2)+line)
 		ypos += 1
             colors['border'] = term.green
+            topart.init_theme(colors, None, 'shadow')
             echo(topart.border() + topart.title(str(time.time()))) 
     if menudraw:
 	    rendermenuwin()
