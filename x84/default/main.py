@@ -417,7 +417,7 @@ def main():
             inp = term.inkey(0)
             while inp:
                 if inp.code == term.KEY_TAB:
-                    menutoggle = not menutoggle
+                    menutoggle = false
                     dirty = True
                     break
                 if inp.code == term.KEY_ENTER:
