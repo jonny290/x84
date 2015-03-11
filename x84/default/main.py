@@ -266,6 +266,7 @@ def rendermenuwin():
        colors['backlight'] = getattr(term, color_backlight)
        colors['highlight'] = getattr(term, color_highlight)
        colors['lowlight'] = getattr(term, color_lowlight)
+       colors['border'] = term.green
     if colors is not None:
         measure_width = term.length
     else:
@@ -313,6 +314,7 @@ def rendermenuwin():
             # newline(s) on last column only
         column = 1 if column == n_columns else column + 1
         echo(u''.join((padding_left, item)))
+        echo(menuwin.border()+menuwin.title('COMMAND SET'))
     return 1
 
 
