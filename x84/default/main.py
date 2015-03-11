@@ -326,6 +326,8 @@ def rendermenuwin():
 
     fillwindow(menuwin,  chr(250).decode('cp437'), True)
 
+    colors['border'] = term.red
+    menuwin.init_theme(colors, None, 'shadow')
     for idx, item in enumerate(rendered_menuitems):
         xloc = 1 +(padding * (column - 1))
         padding_left = menuwin.pos(row, xloc)
@@ -335,7 +337,7 @@ def rendermenuwin():
             # newline(s) on last column only
         column = 1 if column == n_columns else column + 1
         echo(u''.join((padding_left, item)))
-        echo(menuwin.border()+menuwin.title('COMMAND SET'))
+    echo(menuwin.border()+menuwin.title('COMMAND SET'))
     return 1
 
 
