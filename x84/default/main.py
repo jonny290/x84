@@ -225,7 +225,6 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     global arttoggle
     global bgtoggle
     global walltime
-    global art_file
     """ Rendering routine for the current screen. """
     # This is where we depart. We want a clean windowing scheme
     # with a background layer, modular construction and incremental update ability.
@@ -241,9 +240,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     background.init_theme(colors, None, 'double')
     echo(term.clear())
-    if time.time() - walltime > 60:
-        art_file = headers[random.randrange(0,len(headers))]
-        walltime = time.time()
+    art_file = headers[random.randrange(0,len(headers))]
     ypos = 1
     for line in showart(art_file, encoding=art_encoding):
 	if ypos >= term.height - 3:
