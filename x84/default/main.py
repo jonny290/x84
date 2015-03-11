@@ -231,7 +231,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
 	echo(topart.pos(ypos, 2)+line)
 	ypos += 1
     echo(topart.border() + topart.title('BULLETIN BOARD SYSTEM')) 
-    rendermenuwin():
+    rendermenuwin()
     return ypos
 
 def rendermenuwin():
