@@ -460,7 +460,7 @@ def main():
                 else:
                     echo(editor.process_keystroke(inp))
                 inp = term.inkey(0)
-        if time.time() - starttime > 1:
+        if time.time() - starttime > 60:
             dirty = True
             starttime = time.time()
             continue
