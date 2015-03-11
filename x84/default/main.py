@@ -231,7 +231,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
 	echo(topart.pos(ypos, 1)+line)
 	ypos += 1
  
-    return True
+    return ypos
 
 def fillwindow(window, fillchar='#',bordered=False):
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
@@ -281,7 +281,7 @@ def main():
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
             session.activity = 'main menu'
-            renderscreen()
+            ypos = renderscreen()
             ypos = 1
             echo(term.move(1,1))
 	    if width != term.width or height != term.height:
