@@ -416,8 +416,11 @@ def main():
             # decoding -- or none at all (multibyte sequence not yet complete).
             inp = term.inkey(0)
             while inp:
+                if inp.code == u'*':
+                    menutoggle = not menutoggle
+                    dirty = True
+                    break
                 if inp.code == term.KEY_TAB:
-                    menutoggle = False
                     dirty = True
                     break
                 if inp.code == term.KEY_ENTER:
