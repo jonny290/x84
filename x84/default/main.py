@@ -385,7 +385,7 @@ def main():
             echo(term.move(term.height, 2))
             echo(u''.join((text,
 	    display_prompt(term, colors),
-	    editor.refresh())))
+	    editor.refresh()+term.normal)))
             dirty = 0
 
         event, data = session.read_events(('input', 'refresh'))
