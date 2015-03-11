@@ -265,6 +265,10 @@ def rendermenuwin():
        colors['lowlight'] = getattr(term, color_lowlight)
     menuwin = AnsiWindow(8, 50, 12, 8)
     echo(menuwin.clear())
+    if colors is not None:
+        measure_width = term.length
+    else:
+        measure_width = str.__len__
     text = render_menu_entries(term, 0, menu_items, colors, 4, 1)
     echo(menuwin.pos(0,0)+text)
 
