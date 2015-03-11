@@ -281,8 +281,7 @@ def main():
                 echo(syncterm_setfont(syncterm_font))
         if dirty:
             session.activity = 'main menu'
-            ypos = renderscreen()
-            ypos = 1
+            top_margin = renderscreen()
             echo(term.move(1,1))
 	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
