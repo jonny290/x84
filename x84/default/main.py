@@ -394,6 +394,7 @@ def main():
     if term.height >= 43:
         tallmode = True
 
+starttime = time.time()
     while True:
         if dirty  > 1:
             # set syncterm font, if any
@@ -413,7 +414,8 @@ def main():
             dirty = 0
 
         event, data = session.read_events(('input', 'refresh'))
-
+        if time.time() - starttime > 1:
+        event = 'refresh'
         if event == 'refresh':
             dirty = True
             continue
