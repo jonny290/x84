@@ -311,7 +311,7 @@ def rendermenuwin():
             row += 1
             # newline(s) on last column only
         column = 1 if column == n_columns else column + 1
-        echo(u''.join(padding_left, item))
+        echo(u''.join((padding_left, item)))
     return 1
 
 
