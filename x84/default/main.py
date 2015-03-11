@@ -349,6 +349,9 @@ def main():
     import os, glob, random
     from x84.bbs import showart
     session, term = getsession(), getterminal()
+    global menutoggle
+    global arttoggle
+    global bgtoggle
 
     text, width, height, dirty = u'', -1, -1, 2
     headers = glob.glob(os.path.join(here,"art","YOSBBS*.ANS"))
