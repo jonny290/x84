@@ -230,7 +230,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     for line in showart(art_file, encoding=art_encoding):
 	echo(topart.pos(ypos, 2)+line)
 	ypos += 1
-    echo(topart.border() + topart.header('BULLETIN BOARD SYSTEM')) 
+    echo(topart.border() + topart.title('BULLETIN BOARD SYSTEM')) 
     return ypos
 
 def fillwindow(window, fillchar='#',bordered=False):
