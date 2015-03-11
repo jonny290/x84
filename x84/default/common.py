@@ -313,11 +313,7 @@ def display_prompt(term, colors):
     """ Return string for displaying a system-wide command prompt. """
     colors['lowlight'] = colors.get('lowlight', lambda txt: txt)
     bbsname = get_ini(section='system', key='bbsname') or 'Unnamed'
-    xpos = 0
-    if term.width > 30:
-        xpos = max(5, int((term.width / 2) - (80 / 2)))
-    return (u'{xpos}{user}{at}{bbsname}{colon} '.format(
-        xpos=term.move_x(xpos),
+    return (u'{user}{at}{bbsname}{colon} '.format(
         user=term.session.user.handle,
         at=colors['lowlight'](u'@'),
         bbsname=bbsname,
