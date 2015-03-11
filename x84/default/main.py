@@ -374,7 +374,8 @@ def main():
             session.activity = 'main menu'
 	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
-            top_margin = renderscreen()
+            top_margin = renderscreen(menutoggle, arttoggle, bgtoggle)
+            menutoggle, arttoggle, bgtoggle = True, True, True
             echo(term.move(term.height, 2))
             echo(u''.join((text,
 	    display_prompt(term, colors),
@@ -396,6 +397,7 @@ def main():
             inp = term.inkey(0)
             while inp:
                 if inp.code == term.KEY_TAB:
+                    menutoggle = False
                     dirty = 2
                     break
                 if inp.code == term.KEY_ENTER:
