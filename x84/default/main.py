@@ -214,7 +214,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     import os
     session, term = getsession(), getterminal()
     colors = {}
-    colors['border'] = term.bold_red
+    colors['border'] = term.green
     #lets start with the bg frame
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     echo(term.clear() + background.border())
