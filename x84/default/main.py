@@ -394,7 +394,7 @@ def main():
     if term.height >= 43:
         tallmode = True
 
-starttime = time.time()
+    starttime = time.time()
     while True:
         if dirty  > 1:
             # set syncterm font, if any
