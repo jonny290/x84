@@ -225,8 +225,14 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     if menudraw and artdraw and bgdraw: 
 	    background = AnsiWindow(term.height - 1, term.width, 0, 0)
 	    background.init_theme(colors, None, 'double')
-	    echo(term.clear() + background.border())
-	    fillwindow(background,  chr(176).decode('cp437'), True)
+	    echo(term.clear())
+	    art_file = os.path.join(os.path.dirname(__file__), 'art','ue.ans')
+	    ypos = 1
+	    for line in showart(art_file, encoding=art_encoding):
+		echo(background.pos(ypos, 2)+line)
+		ypos += 1
+#	    fillwindow(background,  chr(176).decode('cp437'), True)
+  
     #now on to the top art
     if artdraw:
 	    toparty = 3
@@ -376,7 +382,7 @@ def main():
             # set syncterm font, if any
             if syncterm_font and term.kind.startswith('ansi'):
                 echo(syncterm_setfont(syncterm_font))
-        if dirty > 2:
+        if dirty == 2:
 	    menutoggle, arttoggle, bgtoggle = True, True, True
         if dirty:
             session.activity = 'main menu'
