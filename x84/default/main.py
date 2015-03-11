@@ -301,7 +301,7 @@ def rendermenuwin():
     row = 1
     output = u''
 
-    menuwin = AnsiWindow(8, 2+(n_columns * padding), 12, 8)
+    menuwin = AnsiWindow(rows + 2, 2+(n_columns * padding), term.height - rows - 5, 8)
     echo(menuwin.clear())
 
     fillwindow(menuwin,  chr(250).decode('cp437'), True)
