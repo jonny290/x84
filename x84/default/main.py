@@ -417,7 +417,7 @@ def main():
         if time.time() - starttime > 1:
             event = 'refresh'
             starttime = time.time()
-            puts(str(time.time))
+            echo(term.pos(1,1)+str(time.time))
         if event == 'refresh':
             dirty = True
             continue
