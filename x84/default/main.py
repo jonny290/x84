@@ -414,8 +414,6 @@ def main():
             dirty = 0
 
         event, data = session.read_events(('input', 'refresh'))
-        if time.time() - starttime > 1:
-            event = 'refresh'
         if event == 'refresh':
             dirty = True
             continue
