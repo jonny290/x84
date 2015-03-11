@@ -67,6 +67,9 @@ syncterm_font = get_ini(
     section='main', key='syncterm_font'
 ) or 'cp437thin'
 
+menutoggle = True
+arttoggle = True
+bgtoggle = True
 
 def get_sesame_menu_items(session):
     # there doesn't exist any documentation on how this works,
@@ -204,7 +207,7 @@ def get_line_editor(term, menu):
     return LineEditor(width=max_inp_length,
                       colors={'highlight': getattr(term, color_backlight)})
 
-def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
+def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=False, widgets=['clock',]):
     """ Rendering routine for the current screen. """
     # This is where we depart. We want a clean windowing scheme
     # with a background layer, modular construction and incremental update ability.
@@ -216,27 +219,30 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     colors = {}
     colors['border'] = term.green
     #lets start with the bg frame
-    background = AnsiWindow(term.height - 1, term.width, 0, 0)
-    background.init_theme(colors, None, 'double')
-    echo(term.clear() + background.border())
-    fillwindow(background,  chr(176).decode('cp437'), True)
+    if menudraw and artdraw and bgdraw: 
+	    background = AnsiWindow(term.height - 1, term.width, 0, 0)
+	    background.init_theme(colors, None, 'double')
+	    echo(term.clear() + background.border())
+	    fillwindow(background,  chr(176).decode('cp437'), True)
     #now on to the top art
-    toparty = 3
-    topartx = 3
-    topartheight = 9
-    topartwidth = 37
-    topart = AnsiWindow(topartheight, topartwidth, toparty, topartx)
-    topart.init_theme(colors, None, 'block')
-    echo (topart.clear())
-    ypos = 1
-    bannername = "yos.asc"
-    #bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
-    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
-    for line in showart(art_file, encoding=art_encoding):
-	echo(topart.pos(ypos, 2)+line)
-	ypos += 1
-    echo(topart.border() + topart.title(str(time.time()))) 
-    rendermenuwin()
+    if artdraw:
+	    toparty = 3
+	    topartx = 3
+	    topartheight = 9
+	    topartwidth = 37
+	    topart = AnsiWindow(topartheight, topartwidth, toparty, topartx)
+	    topart.init_theme(colors, None, 'block')
+	    echo (topart.clear())
+	    ypos = 1
+	    bannername = "yos.asc"
+	    #bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
+	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
+	    for line in showart(art_file, encoding=art_encoding):
+		echo(topart.pos(ypos, 2)+line)
+		ypos += 1
+	    echo(topart.border() + topart.title(str(time.time()))) 
+    if menudraw:
+	    rendermenuwin()
     return ypos
 
 def rendermenuwin():
