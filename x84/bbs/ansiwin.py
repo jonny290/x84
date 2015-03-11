@@ -83,7 +83,7 @@ class AnsiWindow(object):
         self._alignment = 'left'
         self._moved = False
 
-    def init_theme(self, colors=None, glyphs=None):
+    def init_theme(self, colors=None, glyphs=None, glyphset='thin'):
         """
         Set glyphs and colors appropriate for "theming".
 
@@ -95,7 +95,7 @@ class AnsiWindow(object):
             'border': (self._term.number_of_colors and
                        self._term.cyan or self._term.normal),
         }
-        self.glyphs = GLYPHSETS['thin'].copy()
+        self.glyphs = GLYPHSETS[glyphset].copy()
         # allow user override
         if colors is not None:
             self.colors.update(colors)
