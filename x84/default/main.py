@@ -208,6 +208,9 @@ def get_line_editor(term, menu):
                       colors={'highlight': getattr(term, color_backlight)})
 
 def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=False, widgets=['clock',]):
+    global menutoggle
+    global arttoggle
+    global bgtoggle
     """ Rendering routine for the current screen. """
     # This is where we depart. We want a clean windowing scheme
     # with a background layer, modular construction and incremental update ability.
