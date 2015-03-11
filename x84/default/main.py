@@ -229,9 +229,10 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	    art_file = os.path.join(os.path.dirname(__file__), 'art','face.ans')
 	    ypos = 1
 	    for line in showart(art_file, encoding=art_encoding):
+                break if ypos >= term.height - 5
 		echo(background.pos(ypos, 2)+line)
 		ypos += 1
-	    echo(background.border)
+	    echo(background.border())
 #	    fillwindow(background,  chr(176).decode('cp437'), True)
   
     #now on to the top art
