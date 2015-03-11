@@ -290,7 +290,7 @@ def rendermenuwin():
     #
     # It's really just a bunch of math to make centered, tabular columns..
     display_width = min(term.width, 80)
-    padding = max(column_widths) + 3
+    padding = max(column_widths) + 1
     n_columns = min(max(1, int(math.floor(display_width / padding))), max_cols)
 #    xpos = max(1, int(math.floor((term.width / 2) - (display_width / 2))))
 #    xpos += int(math.floor((display_width - ((n_columns * padding))) / 2))
@@ -301,6 +301,9 @@ def rendermenuwin():
 
     column = 1
     output = u''
+
+
+
     for idx, item in enumerate(rendered_menuitems):
         padding_left = term.move_x(xpos) if column == 1 and xpos else u''
         padding_right = ' ' * (padding - column_widths[idx])
