@@ -73,7 +73,7 @@ arttoggle = True
 bgtoggle = True
 
 walltime = time.time() - 30
-art.file = ''
+art_file = ''
 def get_sesame_menu_items(session):
     # there doesn't exist any documentation on how this works,
     # only the given examples in the generated default.ini file
