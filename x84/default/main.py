@@ -374,9 +374,9 @@ def main():
     while True:
         if dirty == 2:
             # set syncterm font, if any
+	    menutoggle, arttoggle, bgtoggle = True, True, True
             if syncterm_font and term.kind.startswith('ansi'):
                 echo(syncterm_setfont(syncterm_font))
-                menutoggle, arttoggle, bgtoggle = True, True, True
         if dirty:
             session.activity = 'main menu'
 	    if width != term.width or height != term.height:
