@@ -372,11 +372,12 @@ def main():
         tallmode = True
 
     while True:
-        if dirty == 2:
+        if dirty  > 1:
             # set syncterm font, if any
-	    menutoggle, arttoggle, bgtoggle = True, True, True
             if syncterm_font and term.kind.startswith('ansi'):
                 echo(syncterm_setfont(syncterm_font))
+        if dirty > 2:
+	    menutoggle, arttoggle, bgtoggle = True, True, True
         if dirty:
             session.activity = 'main menu'
 	    if width != term.width or height != term.height:
@@ -413,7 +414,7 @@ def main():
                             echo(term.normal + u'\r\n')
                             gosub(item.script, *item.args, **item.kwargs)
                             editor.content = u''
-                            dirty = 2
+                            dirty = 3
                             break
                     else:
                         if editor.content:
