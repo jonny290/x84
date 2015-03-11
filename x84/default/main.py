@@ -217,20 +217,20 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     echo(background.clear() + background.border())
     fillwindow(background, '#', True)
     #now on to the top art
-    toparty = 2
-    topartx = 20
-    topartheight = 6
-    topartwidth = 40
+    toparty = 3
+    topartx = 3
+    topartheight = 9
+    topartwidth = 37
     topart = AnsiWindow(topartheight, topartwidth, toparty, topartx)
-    echo (topart.clear()+topart.border())
+    echo (topart.clear())
     ypos = 1
     bannername = "yos.asc"
     #bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
     art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
     for line in showart(art_file, encoding=art_encoding):
-	echo(topart.pos(ypos, 1)+line)
+	echo(topart.pos(ypos, 2)+line)
 	ypos += 1
- 
+    echo(topart.border() + topart.header('BULLETIN BOARD SYSTEM')) 
     return ypos
 
 def fillwindow(window, fillchar='#',bordered=False):
