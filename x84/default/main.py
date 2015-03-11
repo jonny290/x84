@@ -231,7 +231,23 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
 	echo(topart.pos(ypos, 2)+line)
 	ypos += 1
     echo(topart.border() + topart.title('BULLETIN BOARD SYSTEM')) 
+    rendermenuwin():
     return ypos
+
+def rendermenuwin():
+    from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
+    import os
+    session, term = getsession(), getterminal()
+    colors = {}
+    if colored_menu_items:
+       colors['backlight'] = getattr(term, color_backlight)
+       colors['highlight'] = getattr(term, color_highlight)
+       colors['lowlight'] = getattr(term, color_lowlight)
+    menuwin = AnsiWindow(8, 50, 12, 8)
+    echo(background.clear())
+    text = render_menu_entries(term, 0, menu_items, colors, 4, 1)
+    echo(menuwin.pos(0,0)+text)
+    return True
 
 def fillwindow(window, fillchar='#',bordered=False):
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
@@ -259,7 +275,6 @@ def main():
     headers = glob.glob(os.path.join(here,"art","YOSBBS*.ANS"))
     menu_items = get_menu_items(session)
     editor = get_line_editor(term, menu_items)
-    colors = {}
     menumode = False
     tallmode = False
     widemode = False
@@ -268,11 +283,6 @@ def main():
         widemode = True
     if term.height >= 43:
         tallmode = True
-
-    if colored_menu_items:
-        colors['backlight'] = getattr(term, color_backlight)
-        colors['highlight'] = getattr(term, color_highlight)
-        colors['lowlight'] = getattr(term, color_lowlight)
 
     while True:
         if dirty == 2:
@@ -285,9 +295,7 @@ def main():
                 width, height = term.width, term.height
             top_margin = renderscreen()
             echo(term.pos(top_margin + 2, 2))
-            text = render_menu_entries(
-                   term, top_margin, menu_items, colors, 4, 1)
-	    echo(u''.join((text,
+           	    echo(u''.join((text,
 	    display_prompt(term, colors),
 	    editor.refresh())))
             dirty = 0
