@@ -389,6 +389,9 @@ def main():
             # decoding -- or none at all (multibyte sequence not yet complete).
             inp = term.inkey(0)
             while inp:
+                if inp.code == term.KEY_TAB:
+                    dirty = 2
+                    break
                 if inp.code == term.KEY_ENTER:
                     # find matching menu item,
                     for item in menu_items:
