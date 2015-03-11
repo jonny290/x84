@@ -416,7 +416,7 @@ def main():
             # decoding -- or none at all (multibyte sequence not yet complete).
             inp = term.inkey(0)
             while inp:
-                if inp.code == u'*':
+                if inp == u'*':
                     menutoggle = not menutoggle
                     dirty = True
                     break
