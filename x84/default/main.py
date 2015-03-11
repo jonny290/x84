@@ -307,7 +307,7 @@ def rendermenuwin():
         xloc = padding * (column - 1)
         padding_left = menuwin.pos(row - 1, xloc)
             # last item, two newlines
-        elif column == n_columns:
+        if column == n_columns:
             row += 1
             # newline(s) on last column only
         column = 1 if column == n_columns else column + 1
