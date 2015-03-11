@@ -238,7 +238,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     return ypos
 
 def rendermenuwin():
-    from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart, decorate_menu_item
+    from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
     import os
     session, term = getsession(), getterminal()
     menu_items = get_menu_items(session)
