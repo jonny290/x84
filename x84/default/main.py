@@ -209,12 +209,28 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     # with a background layer, modular construction and incremental update ability.
     # In theory we should have separate content-generating and screen-rendering subs
     # to provide for fast refreshes without stutters, but that will have to come later.
-    from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini
+    from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
+    import os
     session, term = getsession(), getterminal()
     #lets start with the bg frame
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     echo(background.clear() + background.border())
     fillwindow(background, '#', True)
+    #now on to the top art
+    toparty = 2
+    topartx = 20
+    topartheight = 6
+    topartwidth = 40
+    topart = AnsiWindow(topartheight, topartwidth, toparty, topartx)
+    echo (topart.clear()+topart.border())
+    ypos = 1
+    bannername = "yos.asc"
+    #bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
+    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
+    for line in showart(art_file, encoding=art_encoding):
+	echo(topart.pos(ypos, 1)+line)
+	ypos += 1
+ 
     return True
 
 def fillwindow(window, fillchar='#',bordered=False):
@@ -268,15 +284,7 @@ def main():
             renderscreen()
             ypos = 1
             echo(term.move(1,1))
-            bannername = "yos.asc"
-	    #bannername = "YOSBBS"+str(random.randrange(1,35)).zfill(2)+".ANS"
-	    art_file = os.path.join(os.path.dirname(__file__), 'art', bannername)
-            for line in showart(art_file, encoding=art_encoding):
-                echo(line)
-                ypos += 1
-            top_margin = term.height - ypos - 4
-            echo(u'\r\n')
-            if width != term.width or height != term.height:
+                       if width != term.width or height != term.height:
                 width, height = term.width, term.height
                 text = render_menu_entries(
                     term, top_margin, menu_items, colors, 4, 1)
