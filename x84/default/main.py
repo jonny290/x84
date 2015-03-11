@@ -258,7 +258,7 @@ def rendermenuwin():
         return (u'{key_text} {menu_text}'.format(
   	    key_text=key_text, menu_text=menu_item.text))
     max_cols = 3 
-    max_rowsp = 2
+    max_rowsp=2
     menu_items = get_menu_items(session)
     colors = {}
     if colored_menu_items:
@@ -291,7 +291,6 @@ def rendermenuwin():
     display_width = min(term.width, 80)
     padding = max(column_widths) + 3
     n_columns = min(max(1, int(math.floor(display_width / padding))), max_cols)
-    top_margin = 0
     xpos = max(1, int(math.floor((term.width / 2) - (display_width / 2))))
     xpos += int(math.floor((display_width - ((n_columns * padding))) / 2))
     rows = int(math.ceil(len(rendered_menuitems) / n_columns))
@@ -300,9 +299,8 @@ def rendermenuwin():
 
     column = 1
     output = u''
-    itemy, itemx = 0,0
     for idx, item in enumerate(rendered_menuitems):
-        padding_left = (xpos) if column == 1 and xpos else u''
+        padding_left = term.move_x(xpos) if column == 1 and xpos else u''
         padding_right = ' ' * (padding - column_widths[idx])
         if idx == len(rendered_menuitems) - 1:
             # last item, two newlines
