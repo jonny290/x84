@@ -284,13 +284,13 @@ def main():
             renderscreen()
             ypos = 1
             echo(term.move(1,1))
-                       if width != term.width or height != term.height:
+	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
-                text = render_menu_entries(
-                    term, top_margin, menu_items, colors, 4, 1)
-            echo(u''.join((text,
-                           display_prompt(term, colors),
-                           editor.refresh())))
+            text = render_menu_entries(
+                   term, top_margin, menu_items, colors, 4, 1)
+	    echo(u''.join((text,
+	    display_prompt(term, colors),
+	    editor.refresh())))
             dirty = 0
 
         event, data = session.read_events(('input', 'refresh'))
