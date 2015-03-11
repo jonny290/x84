@@ -281,7 +281,7 @@ def main():
        colors['backlight'] = getattr(term, color_backlight)
        colors['highlight'] = getattr(term, color_highlight)
        colors['lowlight'] = getattr(term, color_lowlight)
-     editor = get_line_editor(term, menu_items)
+    editor = get_line_editor(term, menu_items)
     menumode = False
     tallmode = False
     widemode = False
