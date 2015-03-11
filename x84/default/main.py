@@ -292,8 +292,9 @@ def rendermenuwin():
     display_width = min(term.width, 80)
     padding = max(column_widths) + 3
     n_columns = min(max(1, int(math.floor(display_width / padding))), max_cols)
-    xpos = max(1, int(math.floor((term.width / 2) - (display_width / 2))))
-    xpos += int(math.floor((display_width - ((n_columns * padding))) / 2))
+#    xpos = max(1, int(math.floor((term.width / 2) - (display_width / 2))))
+#    xpos += int(math.floor((display_width - ((n_columns * padding))) / 2))
+    xpos = 0
     rows = int(math.ceil(len(rendered_menuitems) / n_columns))
     height = int(math.ceil((term.height - 3) - top_margin))
     row_spacing = min(max(1, min(3, int(math.floor(height / rows)))), max_rowsp)
