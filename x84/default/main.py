@@ -4,6 +4,7 @@ from __future__ import division
 import collections
 import os
 import random, glob
+import math
 
 
 # local
@@ -37,7 +38,7 @@ colored_menu_items = get_ini(
 #: color used for menu key entries
 color_highlight = get_ini(
     section='main', key='color_highlight'
-) or 'bold_green'
+) or 'bold_white'
 
 #: color used for prompt
 color_backlight = get_ini(
@@ -47,7 +48,7 @@ color_backlight = get_ini(
 #: color used for brackets ``[`` and ``]``
 color_lowlight = get_ini(
     section='main', key='color_lowlight'
-) or 'bold_white'
+) or 'bold_yellow'
 
 #: filepath to artfile displayed for this script
 #art_file = get_ini(
