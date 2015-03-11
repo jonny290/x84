@@ -365,7 +365,7 @@ def main():
 	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
             top_margin = renderscreen()
-            echo(term.pos(2, 2))
+            echo(term.move(2, 2))
             echo(u''.join((text,
 #	    display_prompt(term, colors),
 	    editor.refresh())))
