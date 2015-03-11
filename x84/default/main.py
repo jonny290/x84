@@ -403,7 +403,7 @@ def main():
             inp = term.inkey(0)
             while inp:
                 if inp.code == term.KEY_TAB:
-                    menutoggle = False
+                    menutoggle = not menutoggle
                     dirty = True
                     break
                 if inp.code == term.KEY_ENTER:
