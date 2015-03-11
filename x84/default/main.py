@@ -296,7 +296,7 @@ def main():
                 width, height = term.width, term.height
             top_margin = renderscreen()
             echo(term.pos(top_margin + 2, 2))
-           	    echo(u''.join((text,
+            echo(u''.join((text,
 	    display_prompt(term, colors),
 	    editor.refresh())))
             dirty = 0
