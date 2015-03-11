@@ -304,8 +304,8 @@ def rendermenuwin():
 
 
     for idx, item in enumerate(rendered_menuitems):
-        xloc = padding * (column - 1)
-        padding_left = menuwin.pos(row - 1, xloc)
+        xloc = padding * (column)
+        padding_left = menuwin.pos(row, xloc)
             # last item, two newlines
         if column == n_columns:
             row += 1
