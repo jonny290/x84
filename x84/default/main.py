@@ -300,8 +300,9 @@ def rendermenuwin():
 
     column = 1
     output = u''
+    itemy, itemx = 0,0
     for idx, item in enumerate(rendered_menuitems):
-        padding_left = term.move_x(xpos) if column == 1 and xpos else u''
+        padding_left = (xpos) if column == 1 and xpos else u''
         padding_right = ' ' * (padding - column_widths[idx])
         if idx == len(rendered_menuitems) - 1:
             # last item, two newlines
