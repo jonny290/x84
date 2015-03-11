@@ -309,7 +309,7 @@ def rendermenuwin():
             padding_right = u'\r\n' * 2
         elif column == n_columns:
             # newline(s) on last column only
-            padding_right = u'\r\n' * row_spacing
+            padding_right = u'\r\n' * (row_spacing + 1)
         column = 1 if column == n_columns else column + 1
         output = u''.join((output, padding_left, item, padding_right))
     return 1
