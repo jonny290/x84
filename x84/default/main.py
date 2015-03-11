@@ -241,6 +241,22 @@ def rendermenuwin():
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
     import os
     session, term = getsession(), getterminal()
+
+    def decorate_menu_item(menu_item, colors):
+        """ Return menu item decorated. """
+        key_text = (u'{lb}{inp_key}{rb}'.format(
+       	lb=colors['lowlight'](u'['),
+	rb=colors['lowlight'](u']'),
+	inp_key=colors['highlight'](menu_item.inp_key)))
+
+    # set the inp_key within the key_text if matching
+        if menu_item.text.startswith(menu_item.inp_key):
+	    return menu_item.text.replace(menu_item.inp_key, key_text, 1)
+
+    # otherwise prefixed with space
+        return (u'{key_text} {menu_text}'.format(
+  	    key_text=key_text, menu_text=menu_item.text))
+
     menu_items = get_menu_items(session)
     colors = {}
     if colored_menu_items:
