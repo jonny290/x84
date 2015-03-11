@@ -229,7 +229,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	    art_file = os.path.join(os.path.dirname(__file__), 'art','face.ans')
 	    ypos = 1
 	    for line in showart(art_file, encoding=art_encoding):
-                if ypos >= term.height - 2:
+                if ypos >= term.height - 3:
                     break
 		echo(background.pos(ypos, 2)+line)
 		ypos += 1
@@ -252,7 +252,8 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	    for line in showart(art_file, encoding=art_encoding):
 		echo(topart.pos(ypos, 2)+line)
 		ypos += 1
-	    echo(topart.border() + topart.title(str(time.time()))) 
+            colors['border'] = term.green
+            echo(topart.border() + topart.title(str(time.time()))) 
     if menudraw:
 	    rendermenuwin()
     return ypos
