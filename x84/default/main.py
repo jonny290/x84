@@ -178,6 +178,16 @@ def get_menu_items(session):
                  script='msgarea',
                  args=(), kwargs={}),
 
+        MenuItem(inp_key=u'*',
+                 text=u'menu toggle',
+                 script='',
+                 args=(), kwargs={}),
+
+        MenuItem(inp_key=u'TAB',
+                 text=u'refresh',
+                 script='',
+                 args=(), kwargs={}),
+
         MenuItem(inp_key=u'g',
                  text=u'logoff system',
                  script='logoff',
