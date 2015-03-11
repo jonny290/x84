@@ -369,7 +369,7 @@ def fillwindow(window, fillchar='#',bordered=False):
 
 def main():
     """ Main menu entry point. """
-    import os, glob, random
+    import os, glob, random, time
     from x84.bbs import showart
     session, term = getsession(), getterminal()
     global menutoggle
