@@ -217,21 +217,22 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     # In theory we should have separate content-generating and screen-rendering subs
     # to provide for fast refreshes without stutters, but that will have to come later.
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
-    import os, time
+    import os, time, random, glob
     session, term = getsession(), getterminal()
     colors = {}
     colors['border'] = term.green
     #lets start with the bg frame
+    headers = glob.glob(os.path.join(here,"top","*.*"))
     if menudraw and artdraw and bgdraw: 
 	    background = AnsiWindow(term.height - 1, term.width, 0, 0)
 	    background.init_theme(colors, None, 'double')
 	    echo(term.clear())
-	    art_file = os.path.join(os.path.dirname(__file__), 'art','face.ans')
+	    art_file = headers[random.randrange(0,len(headers))]
 	    ypos = 1
 	    for line in showart(art_file, encoding=art_encoding):
                 if ypos >= term.height - 3:
                     break
-		echo(background.pos(ypos, 2)+line[0:term.width - 10])
+		echo(background.pos(ypos, 2)line)
 		ypos += 1
 	    echo(background.border())
 #	    fillwindow(background,  chr(176).decode('cp437'), True)
