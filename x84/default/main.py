@@ -224,6 +224,8 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     global menutoggle
     global arttoggle
     global bgtoggle
+    global walltime
+    global art_file
     """ Rendering routine for the current screen. """
     # This is where we depart. We want a clean windowing scheme
     # with a background layer, modular construction and incremental update ability.
