@@ -231,7 +231,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	    for line in showart(art_file, encoding=art_encoding):
                 if ypos >= term.height - 3:
                     break
-		echo(background.pos(ypos, 2)+line)
+		echo(background.pos(ypos, 2)+line[0:term.width - 10])
 		ypos += 1
 	    echo(background.border())
 #	    fillwindow(background,  chr(176).decode('cp437'), True)
