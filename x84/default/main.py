@@ -413,12 +413,8 @@ def main():
 	    editor.refresh()+term.normal)))
             dirty = 0
 
-        event, data = session.read_events(('input', 'refresh'))
-        if time.time() - starttime > 1:
-            dirty = True
-            starttime = time.time()
-            continue
-        if event == 'refresh':
+        event, data = session.read_events(('input', 'refresh'), 1)
+       if event == 'refresh':
             dirty = True
             continue
 
@@ -460,3 +456,8 @@ def main():
                 else:
                     echo(editor.process_keystroke(inp))
                 inp = term.inkey(0)
+        if time.time() - starttime > 1:
+            dirty = True
+            starttime = time.time()
+            continue
+ 
