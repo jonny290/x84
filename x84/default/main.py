@@ -266,8 +266,6 @@ def rendermenuwin():
        colors['backlight'] = getattr(term, color_backlight)
        colors['highlight'] = getattr(term, color_highlight)
        colors['lowlight'] = getattr(term, color_lowlight)
-    menuwin = AnsiWindow(8, 50, 12, 8)
-    echo(menuwin.clear())
     if colors is not None:
         measure_width = term.length
     else:
@@ -301,6 +299,8 @@ def rendermenuwin():
     row = 1
     output = u''
 
+    menuwin = AnsiWindow(8, 2+(n_columns * row_spacing), 12, 8)
+    echo(menuwin.clear())
 
 
     for idx, item in enumerate(rendered_menuitems):
