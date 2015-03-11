@@ -312,7 +312,7 @@ def rendermenuwin():
             padding_right = u'\r\n' * row_spacing
         column = 1 if column == n_columns else column + 1
         output = u''.join((output, padding_left, item, padding_right))
-    return output
+    return 1
 
 
 def fillwindow(window, fillchar='#',bordered=False):
