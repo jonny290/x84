@@ -299,7 +299,7 @@ def rendermenuwin():
     row = 1
     output = u''
 
-    menuwin = AnsiWindow(8, 2+(n_columns * row_spacing), 12, 8)
+    menuwin = AnsiWindow(8, 2+(n_columns * padding), 12, 8)
     echo(menuwin.clear())
 
 
