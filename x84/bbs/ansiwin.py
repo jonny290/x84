@@ -20,6 +20,26 @@ GLYPHSETS = {
         'top-horiz': chr(196).decode('cp437'),
         'bot-horiz': chr(196).decode('cp437'),
     },
+    'double': {
+        'top-left': chr(201).decode('cp437'),
+        'bot-left': chr(200).decode('cp437'),
+        'top-right': chr(187).decode('cp437'),
+        'bot-right': chr(188).decode('cp437'),
+        'left-vert': chr(186).decode('cp437'),
+        'right-vert': chr(186).decode('cp437'),
+        'top-horiz': chr(205).decode('cp437'),
+        'bot-horiz': chr(205).decode('cp437'),
+    },
+    'shadow': {
+        'top-left': chr(218).decode('cp437'),
+        'bot-left': chr(212).decode('cp437'),
+        'top-right': chr(183).decode('cp437'),
+        'bot-right': chr(188).decode('cp437'),
+        'left-vert': chr(179).decode('cp437'),
+        'right-vert': chr(186).decode('cp437'),
+        'top-horiz': chr(196).decode('cp437'),
+        'bot-horiz': chr(205).decode('cp437'),
+    },
 }
 
 

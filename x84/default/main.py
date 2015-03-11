@@ -222,6 +222,7 @@ def renderscreen(items=['all',], tall=False, wide=False, widgets=['clock',]):
     topartheight = 9
     topartwidth = 37
     topart = AnsiWindow(topartheight, topartwidth, toparty, topartx)
+    topart.init_theme(glyphs = GLYPHSETS['double'].copy())
     echo (topart.clear())
     ypos = 1
     bannername = "yos.asc"
@@ -245,7 +246,7 @@ def rendermenuwin():
        colors['highlight'] = getattr(term, color_highlight)
        colors['lowlight'] = getattr(term, color_lowlight)
     menuwin = AnsiWindow(8, 50, 12, 8)
-    echo(background.clear())
+    echo(menuwin.clear())
     text = render_menu_entries(term, 0, menu_items, colors, 4, 1)
     echo(menuwin.pos(0,0)+text)
     return True
@@ -275,7 +276,12 @@ def main():
     text, width, height, dirty = u'', -1, -1, 2
     headers = glob.glob(os.path.join(here,"art","YOSBBS*.ANS"))
     menu_items = get_menu_items(session)
-    editor = get_line_editor(term, menu_items)
+    colors = {}
+    if colored_menu_items:
+       colors['backlight'] = getattr(term, color_backlight)
+       colors['highlight'] = getattr(term, color_highlight)
+       colors['lowlight'] = getattr(term, color_lowlight)
+     editor = get_line_editor(term, menu_items)
     menumode = False
     tallmode = False
     widemode = False
