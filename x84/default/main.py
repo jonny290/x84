@@ -65,7 +65,7 @@ art_encoding = get_ini(
 #: fontset for SyncTerm emulator
 syncterm_font = get_ini(
     section='main', key='syncterm_font'
-) or 'cp437'
+) or 'cp437thin'
 
 
 def get_sesame_menu_items(session):
