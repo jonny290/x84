@@ -53,7 +53,7 @@ color_lowlight = get_ini(
 
 #: filepath to artfile displayed for this script
 art_file = get_ini(
-#    section='main', key='art_file'
+    section='main', key='art_file'
 ) or 'art/main1.asc'
 
 
