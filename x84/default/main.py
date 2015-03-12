@@ -241,6 +241,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background.init_theme(colors, None, 'double')
     echo(term.clear())
     ypos = 1
+    art_file = headers[random.randrange(0,len(headers))]
     for line in showart(art_file, encoding=art_encoding,):
 	if ypos >= term.height - 3:
 	    break
@@ -415,8 +416,6 @@ def main():
 	    display_prompt(term, colors),
 	    editor.refresh()+term.normal)))
             dirty = 0
-        if time.time() - walltime > 60:
-            art_file = headers[random.randrange(0,len(headers))]
 
         event, data = session.read_events(('input', 'refresh'), 1)
         if event == 'refresh':
