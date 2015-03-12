@@ -417,7 +417,8 @@ def main():
     if term.height >= 43:
         tallmode = True
 
-    randombgset()
+    if session.user['bg'] is None:
+        randombgset()
     starttime = time.time()
     while True:
         if dirty  > 1:
