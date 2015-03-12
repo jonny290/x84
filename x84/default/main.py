@@ -220,7 +220,7 @@ def get_line_editor(term, menu):
     return LineEditor(width=max_inp_length,
                       colors={'highlight': getattr(term, color_backlight)})
 
-def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=False, widgets=['clock',]):
+def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=False, widgets=['clock',],art_file=None):
     global menutoggle
     global arttoggle
     global bgtoggle
@@ -240,7 +240,6 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     background.init_theme(colors, None, 'double')
     echo(term.clear())
-    art_file = art_file
     if time.time() - walltime > 60:
         art_file = headers[random.randrange(0,len(headers))]
     ypos = 1
@@ -273,7 +272,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
             echo(topart.border() + topart.title(str(time.time()))) 
     if menudraw:
 	    rendermenuwin()
-    return ypos
+    return art_file
 
 def rendermenuwin():
     from x84.bbs import AnsiWindow, getsession, getterminal, echo, ini, showart
@@ -412,7 +411,7 @@ def main():
             session.activity = 'main menu'
 	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
-            top_margin = renderscreen(menutoggle, arttoggle, bgtoggle)
+            art_file = renderscreen(menutoggle, arttoggle, bgtoggle,art_file=art_file)
             echo(term.move(term.height, 2))
             echo(u''.join((text,
 	    display_prompt(term, colors),
