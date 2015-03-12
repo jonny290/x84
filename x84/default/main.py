@@ -442,11 +442,11 @@ def main():
             while inp:
                 if inp == u'*':
                     menutoggle = not menutoggle
-		    randombgset()
                     dirty = True
                     break
                 if inp.code == term.KEY_TAB:
                     starttime = time.time()
+		    randombgset()
                     dirty = True
                     break
                 if inp.code == term.KEY_ENTER:
