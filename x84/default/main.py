@@ -435,6 +435,7 @@ def main():
                     dirty = True
                     break
                 if inp.code == term.KEY_TAB:
+                    starttime = time.time()
                     dirty = True
                     break
                 if inp.code == term.KEY_ENTER:
@@ -460,7 +461,7 @@ def main():
                 else:
                     echo(editor.process_keystroke(inp))
                 inp = term.inkey(0)
-        if time.time() - starttime > 1:
+        if time.time() - starttime > 300:
             dirty = True
             starttime = time.time()
             continue
