@@ -243,7 +243,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     ypos = 1
     art_file = headers[random.randrange(0,len(headers))]
     for line in showart(art_file, encoding=art_encoding,):
-	if ypos >= term.height - 3:
+	if ypos >= term.height - 2:
 	    break
 	echo(background.pos(ypos, 1)+line)
 	ypos += 1
