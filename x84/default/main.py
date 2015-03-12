@@ -241,7 +241,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background.init_theme(colors, None, 'double')
     echo(term.clear())
     ypos = 1
-    for line in showart(artfile, encoding=art_encoding,):
+    for line in showart(art_file, encoding=art_encoding,):
 	if ypos >= term.height - 3:
 	    break
 	echo(background.pos(ypos, 2)+line)
