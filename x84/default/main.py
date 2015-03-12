@@ -371,9 +371,16 @@ def fillwindow(window, fillchar='#',bordered=False):
     echo(term.normal)
     return True
 
+def randombgset():
+    global art_file
+    import os, glob
+    headers = glob.glob(os.path.join(here,"art","top","*.*"))
+    art_file = headers[random.randrange(0,len(headers))]
+    return art_file
+
 def main():
     """ Main menu entry point. """
-    import os, glob, random, time
+    import os, random, time
     from x84.bbs import showart
     session, term = getsession(), getterminal()
     global menutoggle
@@ -381,7 +388,6 @@ def main():
     global bgtoggle
 
     text, width, height, dirty = u'', -1, -1, 2
-    headers = glob.glob(os.path.join(here,"art","YOSBBS*.ANS"))
     menu_items = get_menu_items(session)
     colors = {}
     if colored_menu_items:
