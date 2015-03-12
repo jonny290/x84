@@ -220,7 +220,7 @@ def get_line_editor(term, menu):
     return LineEditor(width=max_inp_length,
                       colors={'highlight': getattr(term, color_backlight)})
 
-def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=False, widgets=['clock',],art_file=None):
+def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=False, widgets=['clock',],):
     global menutoggle
     global arttoggle
     global bgtoggle
@@ -411,7 +411,7 @@ def main():
             session.activity = 'main menu'
 	    if width != term.width or height != term.height:
                 width, height = term.width, term.height
-            art_file = renderscreen(menutoggle, arttoggle, bgtoggle,art_file=art_file)
+            renderscreen(menutoggle, arttoggle, bgtoggle)
             echo(term.move(term.height, 2))
             echo(u''.join((text,
 	    display_prompt(term, colors),
