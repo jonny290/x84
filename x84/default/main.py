@@ -249,7 +249,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	linelist.append(line)
         ypos += 1
 	#echo(background.pos(ypos, 1)+line)
-    if len(linelist) < term.height - 1:
+    if len(linelist) < background.height - 1:
        ypos = ((background.height - len(linelist)) / 2) + 1
     else:
        ypos = 1
