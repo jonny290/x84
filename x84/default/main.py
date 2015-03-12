@@ -241,7 +241,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background.init_theme(colors, None, 'double')
     echo(term.clear())
     ypos = 1
-    art_file = headers[random.randrange(0,len(headers))]
+#    art_file = headers[random.randrange(0,len(headers))]
     for line in showart(art_file, encoding=art_encoding,):
 	if ypos >= term.height - 2:
 	    break
