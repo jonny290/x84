@@ -241,7 +241,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background.init_theme(colors, None, 'double')
     echo(term.clear())
     ypos = 1
-#    art_file = headers[random.randrange(0,len(headers))]
+    art_file = session.user['bg']
     for line in showart(art_file, encoding=art_encoding,):
 	if ypos >= term.height - 2:
 	    break
@@ -374,9 +374,12 @@ def fillwindow(window, fillchar='#',bordered=False):
 def randombgset():
     global art_file
     import os, glob
+    from x84.bbs import session()
+    session = getsession()
     headers = glob.glob(os.path.join(here,"art","top","*.*"))
     art_file = headers[random.randrange(0,len(headers))]
-    return art_file
+    session.user['bg'] = art_file 
+    return 
 
 def main():
     """ Main menu entry point. """
@@ -404,6 +407,7 @@ def main():
     if term.height >= 43:
         tallmode = True
 
+    randombgset()
     starttime = time.time()
     while True:
         if dirty  > 1:
