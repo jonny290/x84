@@ -72,7 +72,7 @@ menutoggle = True
 arttoggle = True
 bgtoggle = True
 
-walltime = time.time() - 30
+walltime = time.time() - 60 
 art_file = ''
 def get_sesame_menu_items(session):
     # there doesn't exist any documentation on how this works,
@@ -416,7 +416,7 @@ def main():
 	    editor.refresh()+term.normal)))
             dirty = 0
         if time.time() - walltime > 60:
-        art_file = headers[random.randrange(0,len(headers))]
+            art_file = headers[random.randrange(0,len(headers))]
 
         event, data = session.read_events(('input', 'refresh'), 1)
         if event == 'refresh':
