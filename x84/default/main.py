@@ -470,5 +470,6 @@ def main():
         if time.time() - starttime > 10:
             dirty = True
             starttime = time.time()
+            randombgset()
             continue
  
