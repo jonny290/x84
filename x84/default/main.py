@@ -234,7 +234,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     import os, time, random, glob
     session, term = getsession(), getterminal()
     colors = {}
-    colors['border'] = term.red
+    colors['border'] = term.bright_green
     #lets start with the bg frame
     headers = glob.glob(os.path.join(here,"art","top","*.*"))
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
