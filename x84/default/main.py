@@ -442,6 +442,7 @@ def main():
             while inp:
                 if inp == u'*':
                     menutoggle = not menutoggle
+		    randombgset()
                     dirty = True
                     break
                 if inp.code == term.KEY_TAB:
@@ -471,7 +472,7 @@ def main():
                 else:
                     echo(editor.process_keystroke(inp))
                 inp = term.inkey(0)
-        if time.time() - starttime > 10:
+        if time.time() - starttime > 1800:
             dirty = True
             starttime = time.time()
             randombgset()
