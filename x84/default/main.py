@@ -254,6 +254,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     else:
        ypos = 1
     for i in linelist:
+        echo(background.pos(ypos, 1))
         echo(i)
 	ypos += 1
     echo(background.border())
