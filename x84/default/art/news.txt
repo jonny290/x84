@@ -2,8 +2,10 @@
 
 |03=|01 main menu
     |06-|15 tweak code
-        |04:|12 windowfy bg
-        |04:|12 windowfy top art/menu
+        |04:|12 windowfy bg [DONE]
+        |04:|12 windowfy top art/menu [DONE]
+        |04:|12 random art [DONE]
+        |04:|12 menu toggle [DONE]
         |04:|12 windowfy twitter/oneliners
         |04:|12 'big' if >= 132col
         |04:|12 'tall' if >= 43row
