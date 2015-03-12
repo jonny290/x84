@@ -66,7 +66,7 @@ art_encoding = get_ini(
 #: fontset for SyncTerm emulator
 syncterm_font = get_ini(
     section='main', key='syncterm_font'
-) or 'cp437thin'
+) or 'cp437'
 
 menutoggle = True
 arttoggle = True
@@ -245,7 +245,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     for line in showart(art_file, encoding=art_encoding,):
 	if ypos >= term.height - 3:
 	    break
-	echo(background.pos(ypos, 2)+line)
+	echo(background.pos(ypos, 1)+line)
 	ypos += 1
     echo(background.border())
 #	    fillwindow(background,  chr(176).decode('cp437'), True)
@@ -417,7 +417,7 @@ def main():
 	    editor.refresh()+term.normal)))
             dirty = 0
 
-        event, data = session.read_events(('input', 'refresh'), 1)
+        event, data = session.read_events(('input', 'refresh'), 0.1)
         if event == 'refresh':
             dirty = True
             continue
