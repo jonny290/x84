@@ -251,7 +251,7 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	#echo(background.pos(ypos, 1)+line)
     if len(linelist) < term.height - 1:
        ypos = ((background.height - len(linelist)) / 2) + 1
-    else
+    else:
        ypos = 1
     for i in linelist:
         echo(i)
