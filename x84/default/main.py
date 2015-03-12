@@ -247,9 +247,10 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
 	if ypos >= term.height - 2:
 	    break
 	linelist.append(line)
+        ypos += 1
 	#echo(background.pos(ypos, 1)+line)
     if len(linelist) < term.height - 1:
-       ypos += ((background.height - len(linelist)) / 2)
+       ypos = ((background.height - len(linelist)) / 2) + 1
     for i in linelist:
         echo(background.pos(ypos, 1) + i)
 	ypos += 1
