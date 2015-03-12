@@ -240,7 +240,8 @@ def renderscreen(menudraw=True, artdraw=True, bgdraw=True, tall=False, wide=Fals
     background = AnsiWindow(term.height - 1, term.width, 0, 0)
     background.init_theme(colors, None, 'double')
     echo(term.clear())
-    art_file = headers[random.randrange(0,len(headers))]
+    if time.time() - walltime > 60:
+        art_file = headers[random.randrange(0,len(headers))]
     ypos = 1
     for line in showart(art_file, encoding=art_encoding,):
 	if ypos >= term.height - 3:
@@ -460,7 +461,7 @@ def main():
                 else:
                     echo(editor.process_keystroke(inp))
                 inp = term.inkey(0)
-        if time.time() - starttime > 60:
+        if time.time() - starttime > 1
             dirty = True
             starttime = time.time()
             continue
