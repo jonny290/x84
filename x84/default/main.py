@@ -374,7 +374,7 @@ def fillwindow(window, fillchar='#',bordered=False):
 def randombgset():
     global art_file
     import os, glob
-    from x84.bbs import session()
+    from x84.bbs import getsession
     session = getsession()
     headers = glob.glob(os.path.join(here,"art","top","*.*"))
     art_file = headers[random.randrange(0,len(headers))]
