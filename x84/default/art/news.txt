@@ -5,8 +5,9 @@
         |04:|12 windowfy bg [DONE]
         |04:|12 windowfy top art/menu [DONE]
         |04:|12 random art [DONE]
+        |04:|12 BG is now saved per-user, TAB to change! [DONE]
         |04:|12 menu toggle [DONE]
-        |04:|12 windowfy twitter/oneliners
+        |04:|12 windowfy twitter/oneliners (ms2)
         |04:|12 'big' if >= 132col
         |04:|12 'tall' if >= 43row
         |04:|12 extra (read only) main window if tall
@@ -21,8 +22,8 @@
         |04:|12 if non cmd enter chat line
  
     |06-|15 async/polling
-        |04:|12 getch with timeout (ms1)
-        |04:|12 async getch with loop (ms2)
+        |04:|12 getch with timeout [DONE!!!!]
+        |04:|12 async getch with loop [IN PROG]
 
 |03=|01 logon stuff
     |06-|15 random yosbanner [DONE]
