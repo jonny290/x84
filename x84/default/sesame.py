@@ -169,4 +169,6 @@ def main(name):
         _Door = DOSDoor if cmd.endswith('dosemu') else Door
         _Door(cmd=cmd, args=args, env=env, cp437=cp437).run()
 
+    echo(term.bold_red+'Press a key...')
+    term.inkey()
     restore_screen(term, store_columns, store_rows)
